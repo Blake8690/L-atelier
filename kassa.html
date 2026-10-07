@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kassa – L'atelier UF</title>
+  <meta name="description" content="Canvastavlor efter dina önskemål – från en bild till ett citat någon i släkten sagt.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 80'%3E%3Crect width='60' height='80' fill='%230b0b0b'/%3E%3Crect x='4' y='4' width='52' height='72' fill='none' stroke='%23c9a961' stroke-width='3'/%3E%3Cpath d='M24 20V58H40' fill='none' stroke='%23c9a961' stroke-width='5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-title-key="meta.title.kassa">
+  <a class="skip-link" href="#main" data-i18n="skip">Hoppa till innehållet</a>
+
+  <!-- Laddningsskärm: guldramen och L ritas upp -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg viewBox="0 0 60 80">
+        <rect class="draw frame-outer" x="2" y="2" width="56" height="76"/>
+        <rect class="draw frame-inner" x="7" y="7" width="46" height="66"/>
+        <path class="draw letter" d="M24 20V58H40"/>
+      </svg>
+      <div class="loader-slogan" data-i18n="slogan">Mer än en tavla</div>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="L'atelier UF">
+        <span class="logo-mark">
+          <svg viewBox="0 0 60 80" aria-hidden="true"><rect x="2" y="2" width="56" height="76" stroke-width="2.5"/><rect x="8" y="8" width="44" height="64" stroke-width="1" opacity=".55"/><path d="M24 20V58H40" stroke-width="4"/></svg>
+          <img class="logo-img" src="images/logo.png" alt="">
+        </span>
+        <span class="brand-name">L'atelier<small>UF</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Hem</a></li>
+          <li><a href="tavlor.html" data-i18n="nav.tavlor">Tavlor</a></li>
+          <li><a href="index.html#om-oss" data-i18n="nav.about">Om oss</a></li>
+          <li><a href="index.html#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="kassa.html" aria-current="page" data-i18n="nav.kassa">Kassa</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn lang-toggle" type="button"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span></button>
+        <a class="icon-btn" href="kassa.html" data-i18n-aria="nav.cart" aria-label="Varukorg">
+          <svg viewBox="0 0 24 24"><path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" hidden>0</span>
+        </a>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="Meny"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head" style="padding-bottom:30px">
+      <div class="wrap">
+        <div class="kicker hero-eyebrow" data-i18n="kassa.kicker">Kassa</div>
+        <h1 class="sheen-text" data-i18n="kassa.title">Din beställning</h1>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-bottom:clamp(80px,10vw,140px)">
+      <!-- KASSAFLÖDE -->
+      <div id="checkout-flow">
+        <ol class="steps" id="steps">
+          <li class="active"><span data-i18n="kassa.step1">Varukorg</span></li>
+          <li><span data-i18n="kassa.step2">Uppgifter</span></li>
+          <li><span data-i18n="kassa.step3">Leverans</span></li>
+        </ol>
+
+        <div class="checkout">
+          <div>
+            <!-- Steg 1: Varukorg -->
+            <div class="step-panel" data-step="1">
+              <h2 class="sr-only" data-i18n="kassa.step1">Varukorg</h2>
+              <ul class="cart-list" id="cart-list"></ul>
+              <div class="cart-empty" id="cart-empty" hidden>
+                <p data-i18n="kassa.empty">Din varukorg är tom.</p>
+                <a class="btn btn-gold" href="tavlor.html"><span data-i18n="kassa.empty.cta">Till tavlorna</span> <span class="arrow">→</span></a>
+              </div>
+              <div class="step-nav" id="cart-nav">
+                <a class="link-line" href="tavlor.html" data-i18n="kassa.empty.cta">Till tavlorna</a>
+                <button type="button" class="btn btn-gold" data-goto="2"><span data-i18n="kassa.next">Fortsätt</span> <span class="arrow">→</span></button>
+              </div>
+            </div>
+
+            <!-- Steg 2: Uppgifter -->
+            <form class="step-panel" data-step="2" id="details-form" novalidate hidden>
+              <h2 data-i18n="kassa.details.title">Dina uppgifter</h2>
+              <div class="form-grid">
+                <div class="field full">
+                  <label class="field-label" for="f-name" data-i18n="kassa.name">För- och efternamn</label>
+                  <input class="input" id="f-name" name="namn" autocomplete="name" required>
+                  <div class="field-error" data-i18n="kassa.required"></div>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="f-email" data-i18n="kassa.email">E-post</label>
+                  <input class="input" id="f-email" name="epost" type="email" autocomplete="email" required>
+                  <div class="field-error" data-i18n="kassa.invalid.email"></div>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="f-phone" data-i18n="kassa.phone">Telefon</label>
+                  <input class="input" id="f-phone" name="telefon" type="tel" autocomplete="tel" required>
+                  <div class="field-error" data-i18n="kassa.required"></div>
+                </div>
+                <div class="field full">
+                  <label class="field-label" for="f-address" data-i18n="kassa.address">Adress</label>
+                  <input class="input" id="f-address" name="adress" autocomplete="street-address" required>
+                  <div class="field-error" data-i18n="kassa.required"></div>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="f-zip" data-i18n="kassa.zip">Postnummer</label>
+                  <input class="input" id="f-zip" name="postnummer" autocomplete="postal-code" inputmode="numeric" required>
+                  <div class="field-error" data-i18n="kassa.required"></div>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="f-city" data-i18n="kassa.city">Ort</label>
+                  <input class="input" id="f-city" name="ort" autocomplete="address-level2" required>
+                  <div class="field-error" data-i18n="kassa.required"></div>
+                </div>
+                <div class="field full">
+                  <label class="field-label" for="f-message" data-i18n="kassa.message">Meddelande (valfritt)</label>
+                  <textarea class="textarea" id="f-message" name="meddelande" maxlength="1000"></textarea>
+                </div>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="link-line" data-goto="1">← <span data-i18n="kassa.back">Tillbaka</span></button>
+                <button type="submit" class="btn btn-gold"><span data-i18n="kassa.next">Fortsätt</span> <span class="arrow">→</span></button>
+              </div>
+            </form>
+
+            <!-- Steg 3: Leverans -->
+            <div class="step-panel" data-step="3" hidden>
+              <h2 data-i18n="kassa.delivery.title">Välj leverans</h2>
+              <div class="delivery-options" role="radiogroup">
+                <label class="delivery-option" id="opt-ship">
+                  <input type="radio" name="leverans" value="frakt" checked>
+                  <span class="radio" aria-hidden="true"></span>
+                  <span><strong data-i18n="kassa.delivery.ship">Frakt</strong><span class="desc" data-i18n="kassa.delivery.ship.text"></span></span>
+                  <span class="cost" id="ship-cost"></span>
+                </label>
+                <label class="delivery-option">
+                  <input type="radio" name="leverans" value="mote">
+                  <span class="radio" aria-hidden="true"></span>
+                  <span><strong data-i18n="kassa.delivery.meet">Mötas upp</strong><span class="desc" data-i18n="kassa.delivery.meet.text"></span></span>
+                  <span class="cost" data-i18n="kassa.shipping.free">Gratis</span>
+                </label>
+              </div>
+              <p class="notice" id="image-mail-note" style="margin-top:24px" data-i18n-html="egen.mail" hidden></p>
+              <div class="step-nav">
+                <button type="button" class="link-line" data-goto="2">← <span data-i18n="kassa.back">Tillbaka</span></button>
+                <button type="button" class="btn btn-gold" id="place-order"><span data-i18n="kassa.order">Beställ</span> <span class="arrow">→</span></button>
+              </div>
+              <p class="sum-note" data-i18n="kassa.terms"></p>
+              <p class="form-error" id="order-error" role="alert"></p>
+            </div>
+          </div>
+
+          <!-- Sammanfattning -->
+          <aside class="summary" aria-live="polite">
+            <h3 data-i18n="kassa.summary">Sammanfattning</h3>
+            <div class="sum-row"><span data-i18n="kassa.subtotal">Delsumma</span><span id="sum-sub"></span></div>
+            <div class="sum-row"><span data-i18n="kassa.shipping">Frakt</span><span id="sum-ship"></span></div>
+            <div class="sum-row sum-total"><span data-i18n="kassa.total">Totalt</span><span id="sum-total"></span></div>
+            <p class="sum-note" id="sum-note" data-i18n="kassa.shipping.note"></p>
+          </aside>
+        </div>
+      </div>
+
+      <!-- BEKRÄFTELSE -->
+      <div class="confirm" id="confirm" hidden tabindex="-1">
+        <div class="center"><div class="kicker" data-i18n="confirm.kicker">Tack för din beställning</div></div>
+        <h2 class="sheen-text" data-i18n="confirm.title">Beställningen är mottagen</h2>
+
+        <div class="confirm-facts">
+          <div><div class="label" data-i18n="confirm.order">Ordernummer</div><div class="value" id="c-order"></div></div>
+          <div><div class="label" data-i18n="confirm.total">Att betala</div><div class="value" id="c-total"></div></div>
+        </div>
+
+        <div class="swish-box">
+          <h3 data-i18n="confirm.pay">Betala med Swish</h3>
+          <div id="swish-ready">
+            <div class="only-desktop">
+              <div class="qr-wrap" id="qr"></div>
+              <p class="swish-meta" data-i18n="confirm.scan"></p>
+            </div>
+            <div class="only-mobile" style="margin:10px 0 22px">
+              <a class="btn btn-gold btn-block" id="swish-btn" href="#"><span data-i18n="confirm.open">Öppna Swish</span> <span class="arrow">→</span></a>
+            </div>
+            <p style="margin:18px 0 4px"><span class="swish-meta" data-i18n="confirm.number">Swish-nummer</span><br><span class="swish-number" id="c-swish"></span></p>
+            <p class="swish-meta"><span data-i18n="confirm.message">Meddelande</span>: <span id="c-msg"></span></p>
+          </div>
+          <div id="swish-pending" hidden>
+            <p class="swish-meta" style="margin-bottom:10px"><span data-i18n="confirm.number">Swish-nummer</span>: <span class="swish-number" id="c-swish-pending"></span></p>
+            <p class="notice" data-i18n="confirm.pending"></p>
+          </div>
+        </div>
+
+        <p class="notice" id="c-image" hidden></p>
+        <p class="notice" id="c-meet" data-i18n="confirm.meet" hidden></p>
+        <p class="notice warn" id="c-mail-error" data-i18n="kassa.mail.error" hidden></p>
+        <p class="lead" style="margin:28px auto" data-i18n="confirm.next"></p>
+        <a class="btn btn-ghost" href="index.html" data-i18n="confirm.home">Till startsidan</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="footer-slogan" data-i18n="slogan">Mer än en tavla</div>
+        <div class="footer-meta">© <span class="year"></span> L'atelier UF · <span data-i18n="footer.uf"></span></div>
+      </div>
+      <div class="footer-social">
+        <a class="icon-btn" href="https://www.instagram.com/l.atelieruf/" target="_blank" rel="noopener" aria-label="Instagram @l.atelieruf"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        <a class="icon-btn" href="https://www.tiktok.com/@latelier.uf" target="_blank" rel="noopener" aria-label="TikTok @latelier.uf"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5"/></svg></a>
+        <a class="icon-btn" href="mailto:latelier2027@gmail.com" aria-label="E-post latelier2027@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/></svg></a>
+        <a class="icon-btn" href="#main" data-i18n-aria="footer.top" aria-label="Till toppen"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/kassa.js"></script>
+</body>
+</html>

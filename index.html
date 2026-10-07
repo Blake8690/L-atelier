@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'atelier UF – Mer än en tavla</title>
+  <meta name="description" content="Canvastavlor efter dina önskemål – från en bild till ett citat någon i släkten sagt.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 80'%3E%3Crect width='60' height='80' fill='%230b0b0b'/%3E%3Crect x='4' y='4' width='52' height='72' fill='none' stroke='%23c9a961' stroke-width='3'/%3E%3Cpath d='M24 20V58H40' fill='none' stroke='%23c9a961' stroke-width='5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-title-key="meta.title.home">
+  <a class="skip-link" href="#main" data-i18n="skip">Hoppa till innehållet</a>
+
+  <!-- Laddningsskärm: guldramen och L ritas upp -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg viewBox="0 0 60 80">
+        <rect class="draw frame-outer" x="2" y="2" width="56" height="76"/>
+        <rect class="draw frame-inner" x="7" y="7" width="46" height="66"/>
+        <path class="draw letter" d="M24 20V58H40"/>
+      </svg>
+      <div class="loader-slogan" data-i18n="slogan">Mer än en tavla</div>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="L'atelier UF">
+        <span class="logo-mark">
+          <svg viewBox="0 0 60 80" aria-hidden="true"><rect x="2" y="2" width="56" height="76" stroke-width="2.5"/><rect x="8" y="8" width="44" height="64" stroke-width="1" opacity=".55"/><path d="M24 20V58H40" stroke-width="4"/></svg>
+          <img class="logo-img" src="images/logo.png" alt="">
+        </span>
+        <span class="brand-name">L'atelier<small>UF</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html" aria-current="page" data-i18n="nav.home">Hem</a></li>
+          <li><a href="tavlor.html" data-i18n="nav.tavlor">Tavlor</a></li>
+          <li><a href="index.html#om-oss" data-i18n="nav.about">Om oss</a></li>
+          <li><a href="index.html#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="kassa.html" data-i18n="nav.kassa">Kassa</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn lang-toggle" type="button"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span></button>
+        <a class="icon-btn" href="kassa.html" data-i18n-aria="nav.cart" aria-label="Varukorg">
+          <svg viewBox="0 0 24 24"><path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" hidden>0</span>
+        </a>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="Meny"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker hero-eyebrow" data-i18n="hero.eyebrow">Canvastavlor efter dina önskemål</div>
+          <h1 class="hero-title">Mer än en tavla</h1>
+          <p class="lead hero-fade" data-i18n="hero.lead">Allt från en bild du älskar till ett citat någon i släkten sagt – tryckt på canvas och spänd på ram.</p>
+          <div class="hero-cta hero-fade">
+            <a class="btn btn-gold" href="tavlor.html"><span data-i18n="hero.cta1">Utforska tavlorna</span> <span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="tavlor.html#egen" data-i18n="hero.cta2">Skapa din egen</a>
+          </div>
+        </div>
+        <figure class="hero-art hero-fade" style="margin:0">
+          <div class="art" data-tilt="8">
+            <img src="images/hero.jpg" alt="" data-ph="L'atelier" data-hue="38">
+          </div>
+          <figcaption class="art-caption"><span data-i18n="slogan">Mer än en tavla</span><span>L'ATELIER UF</span></figcaption>
+        </figure>
+      </div>
+      <div class="scroll-hint" aria-hidden="true" data-i18n="hero.scroll">Skrolla</div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section">
+      <div class="wrap intro-grid">
+        <div class="reveal">
+          <div class="kicker" data-i18n="intro.kicker">Ateljén</div>
+          <h2 class="sheen-text" data-i18n="intro.title">Varje vägg förtjänar en berättelse</h2>
+        </div>
+        <div class="reveal" style="--d:.2s">
+          <p class="lead" data-i18n="intro.text"></p>
+          <a class="link-line" href="#om-oss" data-i18n="nav.about">Om oss</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TVÅ VÄGAR -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker" data-i18n="paths.kicker">Två vägar</div>
+          <h2 class="sheen-text" data-i18n="paths.title">Välj motiv – eller skapa ditt eget</h2>
+        </div>
+        <div class="paths" style="perspective:1400px">
+          <article class="path-card reveal" data-tilt="4">
+            <div class="path-num">i.</div>
+            <h3 data-i18n="paths.std.title">Standardtavlor</h3>
+            <p data-i18n="paths.std.text"></p>
+            <div class="path-price"><small data-i18n="from">från</small><span data-price-from="standard"></span></div>
+            <div><a class="btn btn-ghost" href="tavlor.html"><span data-i18n="paths.std.cta">Se galleriet</span> <span class="arrow">→</span></a></div>
+          </article>
+          <article class="path-card reveal" data-tilt="4" style="--d:.15s">
+            <div class="path-num">ii.</div>
+            <h3 data-i18n="paths.own.title">Egen design</h3>
+            <p data-i18n="paths.own.text"></p>
+            <div class="path-price"><small data-i18n="from">från</small><span data-price-from="egen"></span></div>
+            <div><a class="btn btn-gold" href="tavlor.html#egen"><span data-i18n="paths.own.cta">Skapa egen</span> <span class="arrow">→</span></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker" data-i18n="process.kicker">Så går det till</div>
+          <h2 class="sheen-text" data-i18n="process.title">Från idé till vägg</h2>
+        </div>
+        <div class="process">
+          <div class="process-step reveal"><div class="num">01</div><h3 data-i18n="process.1.title">Välj</h3><p data-i18n="process.1.text"></p></div>
+          <div class="process-step reveal" style="--d:.15s"><div class="num">02</div><h3 data-i18n="process.2.title">Anpassa</h3><p data-i18n="process.2.text"></p></div>
+          <div class="process-step reveal" style="--d:.3s"><div class="num">03</div><h3 data-i18n="process.3.title">Beställ</h3><p data-i18n="process.3.text"></p></div>
+          <div class="process-step reveal" style="--d:.45s"><div class="num">04</div><h3 data-i18n="process.4.title">Häng upp</h3><p data-i18n="process.4.text"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORLEKAR -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="kicker" data-i18n="sizes.kicker">Format</div>
+          <h2 class="sheen-text" data-i18n="sizes.title">Fyra storlekar</h2>
+          <p class="lead" style="margin-inline:auto" data-i18n="sizes.text"></p>
+        </div>
+        <div class="sizes reveal" id="sizes"></div>
+      </div>
+    </section>
+
+    <!-- OM OSS -->
+    <section class="section" id="om-oss">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="reveal">
+            <div class="kicker" data-i18n="about.kicker">Om oss</div>
+            <h2 class="sheen-text" data-i18n="about.title">Människorna bakom ramen</h2>
+          </div>
+          <div class="reveal" style="--d:.2s">
+            <p class="lead" data-i18n="about.text"></p>
+            <p class="intro-quote" style="margin-top:36px" data-i18n="slogan">Mer än en tavla</p>
+          </div>
+        </div>
+        <h3 class="sr-only" data-i18n="about.team">Teamet</h3>
+        <div class="team" id="team"></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="kicker" data-i18n="faq.kicker">Frågor &amp; svar</div>
+          <h2 class="sheen-text" data-i18n="faq.title">Vanliga frågor</h2>
+        </div>
+        <div class="faq reveal">
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1"><span data-i18n="faq.q1"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a1"><div><p data-i18n="faq.a1"></p></div></div></div>
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2"><span data-i18n="faq.q2"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a2"><div><p data-i18n="faq.a2"></p></div></div></div>
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3"><span data-i18n="faq.q3"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a3"><div><p data-i18n="faq.a3"></p></div></div></div>
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4"><span data-i18n="faq.q4"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a4"><div><p data-i18n="faq.a4"></p></div></div></div>
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5"><span data-i18n="faq.q5"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a5"><div><p data-i18n="faq.a5"></p></div></div></div>
+          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a6"><span data-i18n="faq.q6"></span><span class="faq-icon"></span></button><div class="faq-a" id="faq-a6"><div><p data-i18n="faq.a6"></p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="section" id="kontakt" style="padding-top:0">
+      <div class="wrap">
+        <div class="contact-box reveal">
+          <div class="center"><div class="kicker" data-i18n="contact.kicker">Kontakt</div></div>
+          <h2 class="sheen-text" data-i18n="contact.title">Hör av dig</h2>
+          <p class="lead" style="margin:22px auto 0" data-i18n="contact.text"></p>
+          <ul class="contact-list">
+            <li><a href="mailto:latelier2027@gmail.com">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/></svg>
+              <span class="label" data-i18n="contact.email">E-post</span><span class="value">latelier2027@gmail.com</span></a></li>
+            <li><a href="tel:+46702496189">
+              <svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
+              <span class="label" data-i18n="contact.phone">Telefon</span><span class="value">070-249 61 89</span></a></li>
+            <li><a href="https://www.instagram.com/l.atelieruf/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg>
+              <span class="label" data-i18n="contact.instagram">Instagram</span><span class="value">@l.atelieruf</span></a></li>
+            <li><a href="https://www.tiktok.com/@latelier.uf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5"/></svg>
+              <span class="label" data-i18n="contact.tiktok">TikTok</span><span class="value">@latelier.uf</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="footer-slogan" data-i18n="slogan">Mer än en tavla</div>
+        <div class="footer-meta">© <span class="year"></span> L'atelier UF · <span data-i18n="footer.uf"></span></div>
+      </div>
+      <div class="footer-social">
+        <a class="icon-btn" href="https://www.instagram.com/l.atelieruf/" target="_blank" rel="noopener" aria-label="Instagram @l.atelieruf"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        <a class="icon-btn" href="https://www.tiktok.com/@latelier.uf" target="_blank" rel="noopener" aria-label="TikTok @latelier.uf"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5"/></svg></a>
+        <a class="icon-btn" href="mailto:latelier2027@gmail.com" aria-label="E-post latelier2027@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/></svg></a>
+        <a class="icon-btn" href="#main" data-i18n-aria="footer.top" aria-label="Till toppen"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

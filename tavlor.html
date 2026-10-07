@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tavlor – L'atelier UF</title>
+  <meta name="description" content="Canvastavlor efter dina önskemål – från en bild till ett citat någon i släkten sagt.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 80'%3E%3Crect width='60' height='80' fill='%230b0b0b'/%3E%3Crect x='4' y='4' width='52' height='72' fill='none' stroke='%23c9a961' stroke-width='3'/%3E%3Cpath d='M24 20V58H40' fill='none' stroke='%23c9a961' stroke-width='5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Great+Vibes&family=Dancing+Script:wght@500&family=Montserrat:wght@300;500&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-title-key="meta.title.tavlor">
+  <a class="skip-link" href="#main" data-i18n="skip">Hoppa till innehållet</a>
+
+  <!-- Laddningsskärm: guldramen och L ritas upp -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg viewBox="0 0 60 80">
+        <rect class="draw frame-outer" x="2" y="2" width="56" height="76"/>
+        <rect class="draw frame-inner" x="7" y="7" width="46" height="66"/>
+        <path class="draw letter" d="M24 20V58H40"/>
+      </svg>
+      <div class="loader-slogan" data-i18n="slogan">Mer än en tavla</div>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="L'atelier UF">
+        <span class="logo-mark">
+          <svg viewBox="0 0 60 80" aria-hidden="true"><rect x="2" y="2" width="56" height="76" stroke-width="2.5"/><rect x="8" y="8" width="44" height="64" stroke-width="1" opacity=".55"/><path d="M24 20V58H40" stroke-width="4"/></svg>
+          <img class="logo-img" src="images/logo.png" alt="">
+        </span>
+        <span class="brand-name">L'atelier<small>UF</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Hem</a></li>
+          <li><a href="tavlor.html" aria-current="page" data-i18n="nav.tavlor">Tavlor</a></li>
+          <li><a href="index.html#om-oss" data-i18n="nav.about">Om oss</a></li>
+          <li><a href="index.html#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="kassa.html" data-i18n="nav.kassa">Kassa</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn lang-toggle" type="button"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span></button>
+        <a class="icon-btn" href="kassa.html" data-i18n-aria="nav.cart" aria-label="Varukorg">
+          <svg viewBox="0 0 24 24"><path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" hidden>0</span>
+        </a>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="Meny"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <div class="kicker hero-eyebrow" data-i18n="tavlor.kicker">Galleriet</div>
+        <h1 class="sheen-text" data-i18n="tavlor.title">Tavlor</h1>
+        <p class="lead hero-fade" data-i18n="tavlor.lead"></p>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-bottom:clamp(80px,10vw,140px)">
+      <div class="tabs" role="tablist" aria-label="Kategorier">
+        <button class="tab" role="tab" id="tab-stad" data-tab="stad" aria-controls="panel-gallery" aria-selected="true" data-i18n="tab.stad">Stadsmiljö</button>
+        <button class="tab" role="tab" id="tab-natur" data-tab="natur" aria-controls="panel-gallery" aria-selected="false" tabindex="-1" data-i18n="tab.natur">Natur</button>
+        <button class="tab" role="tab" id="tab-portratt" data-tab="portratt" aria-controls="panel-gallery" aria-selected="false" tabindex="-1" data-i18n="tab.portratt">Porträtt</button>
+        <button class="tab" role="tab" id="tab-religion" data-tab="religion" aria-controls="panel-gallery" aria-selected="false" tabindex="-1" data-i18n="tab.religion">Religion</button>
+        <button class="tab" role="tab" id="tab-djur" data-tab="djur" aria-controls="panel-gallery" aria-selected="false" tabindex="-1" data-i18n="tab.djur">Djur</button>
+        <button class="tab" role="tab" id="tab-film" data-tab="film" aria-controls="panel-gallery" aria-selected="false" tabindex="-1" data-i18n="tab.film">Filmer och serier</button>
+        <button class="tab tab-special" role="tab" id="tab-egen" data-tab="egen" aria-controls="panel-egen" aria-selected="false" tabindex="-1" data-i18n="tab.egen">Skapa egen</button>
+        <span class="tab-last-spacer" aria-hidden="true"></span>
+      </div>
+
+      <!-- GALLERI -->
+      <div class="tab-panel" id="panel-gallery" role="tabpanel" aria-labelledby="tab-stad">
+        <div class="gallery" id="gallery"></div>
+      </div>
+
+      <!-- SKAPA EGEN -->
+      <div class="tab-panel" id="panel-egen" role="tabpanel" aria-labelledby="tab-egen" hidden>
+        <div class="section-head">
+          <div class="kicker" data-i18n="egen.kicker">Skapa egen</div>
+          <h2 class="sheen-text" data-i18n="egen.title">Din tavla, på din vägg</h2>
+          <p class="lead" data-i18n="egen.lead"></p>
+        </div>
+
+        <div class="studio">
+          <!-- Förhandsvisning -->
+          <div class="studio-preview">
+            <div class="room" id="room" data-room="living">
+              <span class="room-label" id="room-label" data-i18n="egen.room.living">Vardagsrum</span>
+              <span class="room-dims" id="room-dims">30×40 cm</span>
+
+              <div class="wall-canvas" id="wall-canvas" style="--cw:30;--ch:40;--cb:126">
+                <div class="canvas-empty" id="canvas-content"><span class="l">L</span></div>
+              </div>
+
+              <div class="furniture sofa" data-for="living" aria-hidden="true">
+                <div class="back"></div><div class="arm l"></div><div class="arm r"></div>
+                <div class="seat"></div><div class="cushion l"></div><div class="cushion r"></div>
+                <div class="legs"></div>
+              </div>
+              <div class="furniture bed" data-for="bedroom" aria-hidden="true" hidden>
+                <div class="head"></div><div class="nightstand l"></div><div class="nightstand r"></div>
+                <div class="mattress"></div><div class="pillow l"></div><div class="pillow r"></div><div class="throw"></div>
+              </div>
+              <div class="furniture dresser" data-for="hall" aria-hidden="true" hidden>
+                <div class="top"></div><div class="body"></div><div class="leg l"></div><div class="leg r"></div>
+                <div class="vase"></div><div class="books"></div>
+              </div>
+              <div class="room-floor"></div>
+            </div>
+
+            <div class="preview-foot">
+              <div>
+                <span class="field-label" style="margin-bottom:8px" data-i18n="egen.room">Rum</span>
+                <div class="chips" role="radiogroup" id="room-chips" style="margin:0">
+                  <button type="button" class="chip" role="radio" data-room="living" aria-checked="true" data-i18n="egen.room.living">Vardagsrum</button>
+                  <button type="button" class="chip" role="radio" data-room="bedroom" aria-checked="false" data-i18n="egen.room.bedroom">Sovrum</button>
+                  <button type="button" class="chip" role="radio" data-room="hall" aria-checked="false" data-i18n="egen.room.hall">Hall</button>
+                </div>
+              </div>
+              <p class="scale-note" id="scale-note" data-i18n="egen.scale.living"></p>
+            </div>
+          </div>
+
+          <!-- Inställningar -->
+          <div class="studio-controls">
+            <div class="studio-section">
+              <span class="field-label" data-i18n="egen.mode">Vad vill du göra?</span>
+              <div class="chips" role="radiogroup" id="mode-chips" style="margin:0">
+                <button type="button" class="chip" role="radio" data-mode="upload" aria-checked="true" data-i18n="egen.mode.upload">Ladda upp bild</button>
+                <button type="button" class="chip" role="radio" data-mode="quote" aria-checked="false" data-i18n="egen.mode.quote">Skriv ett citat</button>
+                <button type="button" class="chip" role="radio" data-mode="idea" aria-checked="false" data-i18n="egen.mode.idea">Beskriv en idé</button>
+              </div>
+            </div>
+
+            <!-- a) Ladda upp -->
+            <div class="studio-section mode-panel" data-panel="upload">
+              <label class="dropzone" id="dropzone">
+                <input type="file" id="file-input" accept="image/*">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M12 16V8M8 12l4-4 4 4"/></svg>
+                <span data-i18n-html="egen.upload.drop">Dra hit din bild eller <u>klicka för att välja</u></span>
+                <span class="hint" data-i18n="egen.upload.hint"></span>
+              </label>
+              <div class="upload-info" id="upload-info" hidden></div>
+              <div class="res-msg" id="res-msg" aria-live="polite"></div>
+              <div style="margin-top:20px">
+                <label class="check" id="rights-check">
+                  <input type="checkbox" id="rights">
+                  <span class="box" aria-hidden="true"></span>
+                  <span data-i18n="egen.rights">Jag har rätt att använda bilden</span>
+                </label>
+              </div>
+              <p class="notice" style="margin-top:20px" data-i18n-html="egen.mail"></p>
+            </div>
+
+            <!-- b) Citat -->
+            <div class="studio-section mode-panel" data-panel="quote" hidden>
+              <div class="field">
+                <label class="field-label" for="quote-text" data-i18n="egen.quote.label">Ditt citat</label>
+                <textarea class="textarea" id="quote-text" maxlength="220" data-i18n-placeholder="egen.quote.placeholder"></textarea>
+              </div>
+              <div class="field">
+                <label class="field-label" for="quote-author" data-i18n="egen.quote.author">Vem sa det?</label>
+                <input class="input" id="quote-author" maxlength="60" data-i18n-placeholder="egen.quote.authorph">
+              </div>
+              <span class="field-label" data-i18n="egen.font">Typsnitt</span>
+              <div class="font-grid" role="radiogroup" id="font-chips"></div>
+              <div class="color-row">
+                <div>
+                  <span class="field-label" data-i18n="egen.color">Textfärg</span>
+                  <div class="swatches" role="radiogroup" id="text-swatches"></div>
+                </div>
+                <div>
+                  <span class="field-label" data-i18n="egen.bg">Bakgrund</span>
+                  <div class="swatches" role="radiogroup" id="bg-swatches"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- c) Idé -->
+            <div class="studio-section mode-panel" data-panel="idea" hidden>
+              <div class="field">
+                <label class="field-label" for="idea-text" data-i18n="egen.idea.label">Beskriv din idé</label>
+                <textarea class="textarea" id="idea-text" maxlength="1000" style="min-height:160px" data-i18n-placeholder="egen.idea.placeholder"></textarea>
+              </div>
+              <p class="notice" data-i18n="egen.idea.note"></p>
+            </div>
+
+            <!-- Storlek & format -->
+            <div class="studio-section">
+              <span class="field-label" data-i18n="egen.size">Storlek</span>
+              <div class="chips" role="radiogroup" id="size-chips"></div>
+              <span class="field-label" data-i18n="egen.orient">Format</span>
+              <div class="chips" role="radiogroup" id="orient-chips" style="margin:0">
+                <button type="button" class="chip" role="radio" data-orient="portrait" aria-checked="true" data-i18n="egen.orient.portrait">Stående</button>
+                <button type="button" class="chip" role="radio" data-orient="landscape" aria-checked="false" data-i18n="egen.orient.landscape">Liggande</button>
+              </div>
+            </div>
+
+            <div class="studio-buy">
+              <div class="price"><small data-i18n="egen.price">Pris</small><span id="egen-price"></span></div>
+              <button type="button" class="btn btn-gold" id="egen-add"><span data-i18n="egen.add">Lägg i varukorgen</span> <span class="arrow">→</span></button>
+            </div>
+            <p class="form-error" id="egen-error" role="alert"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: välj storlek för standardtavla -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close data-i18n-aria="modal.close" aria-label="Stäng">×</button>
+      <div class="modal-art"><div class="art" data-tilt="6" id="modal-art"></div></div>
+      <div class="modal-body">
+        <div class="kicker" id="modal-cat"></div>
+        <h3 id="modal-title"></h3>
+        <span class="field-label" data-i18n="modal.size">Storlek</span>
+        <div class="chips" role="radiogroup" id="modal-sizes"></div>
+        <span class="field-label" data-i18n="modal.price">Pris</span>
+        <div class="modal-price" id="modal-price"></div>
+        <button type="button" class="btn btn-gold btn-block" id="modal-add"><span data-i18n="modal.add">Lägg i varukorgen</span> <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="footer-slogan" data-i18n="slogan">Mer än en tavla</div>
+        <div class="footer-meta">© <span class="year"></span> L'atelier UF · <span data-i18n="footer.uf"></span></div>
+      </div>
+      <div class="footer-social">
+        <a class="icon-btn" href="https://www.instagram.com/l.atelieruf/" target="_blank" rel="noopener" aria-label="Instagram @l.atelieruf"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        <a class="icon-btn" href="https://www.tiktok.com/@latelier.uf" target="_blank" rel="noopener" aria-label="TikTok @latelier.uf"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5"/></svg></a>
+        <a class="icon-btn" href="mailto:latelier2027@gmail.com" aria-label="E-post latelier2027@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/></svg></a>
+        <a class="icon-btn" href="#main" data-i18n-aria="footer.top" aria-label="Till toppen"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tavlor.js"></script>
+</body>
+</html>
