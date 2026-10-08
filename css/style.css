@@ -610,7 +610,7 @@ body:not(.has-spotlight) .art img { filter: none; }
 
 /* ---------------- Team ---------------- */
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 100px); align-items: start; margin-bottom: clamp(56px, 8vw, 100px); }
-.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 56px) clamp(16px, 3vw, 40px); }
+.team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px) clamp(16px, 3vw, 40px); }
 .member { text-align: center; }
 .member-photo {
   position: relative;
@@ -643,7 +643,7 @@ body:not(.has-spotlight) .art img { filter: none; }
   font-style: italic;
 }
 .member-name { font-family: var(--serif); font-size: 23px; line-height: 1.2; }
-.member-role { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.member-role { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-top: 8px; overflow-wrap: anywhere; hyphens: auto; }
 
 /* ---------------- FAQ ---------------- */
 .faq { max-width: 860px; margin: 0 auto; border-top: 1px solid var(--line); }
@@ -1344,7 +1344,9 @@ body:not(.has-spotlight) .art img { filter: none; }
 @media (max-width: 620px) {
   .brand-name small { display: none; }
   .lang-toggle .lang-code { display: none; }
-  .team { grid-template-columns: 1fr 1fr; }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .member-name { font-size: 19px; }
+  .member-role { font-size: 10px; letter-spacing: .12em; }
   .process { grid-template-columns: 1fr; }
   .process-step { padding-right: 0; }
   .sizes { --s: 1.05px; gap: 10px; }
