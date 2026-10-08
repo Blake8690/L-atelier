@@ -24,4 +24,4 @@ Saknas en bild visas automatiskt en snygg platshållare. Lägg in:
 - `images/logo.png` – loggan (ersätter SVG-loggan i menyn)
 - `images/hero.jpg` – tavlan på startsidan
 - `images/tavlor/stad-1.jpg` … `film-4.jpg` – se filnamnen i `TAVLOR`
-- `images/team/1.jpg` … `6.jpg` – kvadratiska porträtt
+- `images/team/emil.jpg`, `jonathan.jpg`, `sixten.jpg`, `shaghaeq.jpg`, `hugo.jpg`, `baraa.jpg` – kvadratiska porträtt

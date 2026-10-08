@@ -120,10 +120,10 @@ const TAVLOR = {
 /* ---------- TEAMET ----------
    Lägg bilder i /images/team/ (kvadratiska blir bäst). */
 const TEAM = [
-  { bild: "images/team/1.jpg", namn: "Förnamn Efternamn", roll: { sv: "VD", en: "CEO" } },
-  { bild: "images/team/2.jpg", namn: "Förnamn Efternamn", roll: { sv: "Ekonomiansvarig", en: "Head of Finance" } },
-  { bild: "images/team/3.jpg", namn: "Förnamn Efternamn", roll: { sv: "Marknadsföringsansvarig", en: "Head of Marketing" } },
-  { bild: "images/team/4.jpg", namn: "Förnamn Efternamn", roll: { sv: "Designansvarig", en: "Head of Design" } },
-  { bild: "images/team/5.jpg", namn: "Förnamn Efternamn", roll: { sv: "Produktionsansvarig", en: "Head of Production" } },
-  { bild: "images/team/6.jpg", namn: "Förnamn Efternamn", roll: { sv: "Försäljningsansvarig", en: "Head of Sales" } }
+  { bild: "images/team/emil.jpg",     namn: "Emil Nilsson",              roll: { sv: "VD", en: "CEO" } },
+  { bild: "images/team/jonathan.jpg", namn: "Jonathan Lampén Helgesson", roll: { sv: "Vice VD & marknadsansvarig", en: "Deputy CEO & Head of Marketing" } },
+  { bild: "images/team/sixten.jpg",   namn: "Sixten Skoog",              roll: { sv: "Ekonomiansvarig", en: "Head of Finance" } },
+  { bild: "images/team/shaghaeq.jpg", namn: "Shaghaeq Ahmadi",           roll: { sv: "Försäljnings- & personalansvarig", en: "Head of Sales & HR" } },
+  { bild: "images/team/hugo.jpg",     namn: "Hugo Silva",                roll: { sv: "Produktansvarig", en: "Head of Product" } },
+  { bild: "images/team/baraa.jpg",    namn: "Baraa Hamid",               roll: { sv: "Administratör & hållbarhetsansvarig", en: "Administrator & Head of Sustainability" } }
 ];
