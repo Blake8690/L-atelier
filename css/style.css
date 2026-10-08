@@ -1188,7 +1188,6 @@ body:not(.has-spotlight) .art img { filter: none; }
 .steps li.done { color: var(--text); }
 .steps li.active::after,
 .steps li.done::after { width: calc(100% - 4px); }
-.steps li > span::before { content: "0" counter(step) "  "; color: var(--gold); }
 
 .step-panel[hidden] { display: none; }
 .step-panel { animation: panelIn .9s var(--ease); }
