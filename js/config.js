@@ -75,20 +75,25 @@ const KONTAKT = {
    titel: { sv, en } */
 const TAVLOR = {
   stad: [
-    { id: "stad-1", bild: "images/tavlor/stad-1.jpg", titel: { sv: "Gamla stan i skymning", en: "Old Town at dusk" } },
-    { id: "stad-2", bild: "images/tavlor/stad-2.jpg", titel: { sv: "New York, svartvitt", en: "New York, black & white" } },
-    { id: "stad-3", bild: "images/tavlor/stad-3.jpg", titel: { sv: "Paris om natten", en: "Paris by night" } },
-    { id: "stad-4", bild: "images/tavlor/stad-4.jpg", titel: { sv: "Regn i Tokyo", en: "Rain in Tokyo" } },
-    { id: "stad-5", bild: "images/tavlor/stad-5.jpg", titel: { sv: "Hamnen", en: "The harbour" } },
-    { id: "stad-6", bild: "images/tavlor/stad-6.jpg", titel: { sv: "Gränd i Rom", en: "Alley in Rome" } }
+    { id: "stad-gamlastan", bild: "images/gamlastan.jpeg", titel: { sv: "Gamla stan", en: "Stockholm Old Town" } },
+    { id: "stad-stockholm1", bild: "images/stockholm1.jpeg", titel: { sv: "Stockholm", en: "Stockholm" } },
+    { id: "stad-stockholm-over", bild: "images/stockholm-over.jpeg", titel: { sv: "Stockholm från ovan", en: "Stockholm from above" } },
+    { id: "stad-malmo", bild: "images/malmo.jpeg", titel: { sv: "Malmö", en: "Malmö" } },
+    { id: "stad-bat", bild: "images/bat.jpeg", titel: { sv: "Segelfartyget i hamnen", en: "Tall ship in the harbour" } },
+    { id: "stad-london", bild: "images/london.jpeg", titel: { sv: "London", en: "London" } },
+    { id: "stad-london2", bild: "images/london2.jpeg", titel: { sv: "Big Ben", en: "Big Ben" } },
+    { id: "stad-paris", bild: "images/paris.jpeg", titel: { sv: "Paris", en: "Paris" } },
+    { id: "stad-paris2", bild: "images/paris2.jpeg", titel: { sv: "Eiffeltornet", en: "The Eiffel Tower" } },
+    { id: "stad-paris3", bild: "images/paris3.jpeg", titel: { sv: "Paris i solnedgång", en: "Paris at sunset" } },
+    { id: "stad-newyork", bild: "images/newyork.jpeg", titel: { sv: "New York", en: "New York" } },
+    { id: "stad-houston", bild: "images/houston.jpeg", titel: { sv: "Houston", en: "Houston" } }
   ],
   natur: [
-    { id: "natur-1", bild: "images/tavlor/natur-1.jpg", titel: { sv: "Fjällsjö", en: "Mountain lake" } },
-    { id: "natur-2", bild: "images/tavlor/natur-2.jpg", titel: { sv: "Dimmig skog", en: "Misty forest" } },
-    { id: "natur-3", bild: "images/tavlor/natur-3.jpg", titel: { sv: "Hav i storm", en: "Stormy sea" } },
-    { id: "natur-4", bild: "images/tavlor/natur-4.jpg", titel: { sv: "Torkade blommor", en: "Dried flowers" } },
-    { id: "natur-5", bild: "images/tavlor/natur-5.jpg", titel: { sv: "Ökendyner", en: "Desert dunes" } },
-    { id: "natur-6", bild: "images/tavlor/natur-6.jpg", titel: { sv: "Norrsken", en: "Northern lights" } }
+    { id: "natur-norrsken", bild: "images/norrsken.jpeg", titel: { sv: "Norrsken", en: "Northern lights" } },
+    { id: "natur-vattenfall", bild: "images/vattenfall.jpeg", titel: { sv: "Vattenfallet", en: "The waterfall" } },
+    { id: "natur-svensk-skog", bild: "images/svensk-skog.jpeg", titel: { sv: "Svensk skog", en: "Swedish forest" } },
+    { id: "natur-regnskog", bild: "images/regnskog.jpeg", titel: { sv: "Regnskog", en: "Rainforest" } },
+    { id: "natur-savann", bild: "images/savann.jpeg", titel: { sv: "Savann i solnedgång", en: "Savanna at sunset" } }
   ],
   portratt: [
     { id: "portratt-1", bild: "images/tavlor/portratt-1.jpg", titel: { sv: "Kvinna i profil", en: "Woman in profile" } },
@@ -97,17 +102,14 @@ const TAVLOR = {
     { id: "portratt-4", bild: "images/tavlor/portratt-4.jpg", titel: { sv: "Skuggspel", en: "Shadow play" } }
   ],
   religion: [
-    { id: "religion-1", bild: "images/tavlor/religion-1.jpg", titel: { sv: "Ljus i kyrkan", en: "Light in the church" } },
-    { id: "religion-2", bild: "images/tavlor/religion-2.jpg", titel: { sv: "Kalligrafi", en: "Calligraphy" } },
-    { id: "religion-3", bild: "images/tavlor/religion-3.jpg", titel: { sv: "Händer i bön", en: "Praying hands" } },
-    { id: "religion-4", bild: "images/tavlor/religion-4.jpg", titel: { sv: "Mosaik", en: "Mosaic" } }
+    { id: "religion-kors", bild: "images/kors.jpeg", titel: { sv: "Tre kors i solnedgång", en: "Three crosses at sunset" } },
+    { id: "religion-mecca", bild: "images/mecca.jpeg", titel: { sv: "Mecka", en: "Mecca" } }
   ],
   djur: [
-    { id: "djur-1", bild: "images/tavlor/djur-1.jpg", titel: { sv: "Lejonet", en: "The lion" } },
-    { id: "djur-2", bild: "images/tavlor/djur-2.jpg", titel: { sv: "Häst i motljus", en: "Horse in backlight" } },
-    { id: "djur-3", bild: "images/tavlor/djur-3.jpg", titel: { sv: "Räv i snö", en: "Fox in snow" } },
-    { id: "djur-4", bild: "images/tavlor/djur-4.jpg", titel: { sv: "Örnen", en: "The eagle" } },
-    { id: "djur-5", bild: "images/tavlor/djur-5.jpg", titel: { sv: "Elefantfamilj", en: "Elephant family" } }
+    { id: "djur-elefant", bild: "images/elefant.jpeg", titel: { sv: "Elefanten", en: "The elephant" } },
+    { id: "djur-giraff", bild: "images/giraff.jpeg", titel: { sv: "Giraff i solnedgång", en: "Giraffe at sunset" } },
+    { id: "djur-groda", bild: "images/groda.jpeg", titel: { sv: "Grodan", en: "The frog" } },
+    { id: "djur-orm", bild: "images/orm.jpeg", titel: { sv: "Ormen", en: "The snake" } }
   ],
   film: [
     { id: "film-1", bild: "images/tavlor/film-1.jpg", titel: { sv: "Klassisk filmaffisch", en: "Classic movie poster" } },
