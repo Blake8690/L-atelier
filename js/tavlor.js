@@ -4,7 +4,7 @@
    ========================================================= */
 
 const CAT_HUE = { stad: 30, natur: 110, portratt: 15, religion: 45, djur: 60, film: 260 };
-const TABS = ["stad", "natur", "portratt", "religion", "djur", "film", "egen"];
+const TABS = ["stad", "natur", "religion", "djur", "egen"];
 let currentTab = "stad";
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

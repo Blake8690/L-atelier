@@ -95,12 +95,6 @@ const TAVLOR = {
     { id: "natur-regnskog", bild: "images/regnskog.jpeg", titel: { sv: "Regnskog", en: "Rainforest" } },
     { id: "natur-savann", bild: "images/savann.jpeg", titel: { sv: "Savann i solnedgång", en: "Savanna at sunset" } }
   ],
-  portratt: [
-    { id: "portratt-1", bild: "images/tavlor/portratt-1.jpg", titel: { sv: "Kvinna i profil", en: "Woman in profile" } },
-    { id: "portratt-2", bild: "images/tavlor/portratt-2.jpg", titel: { sv: "Linjeporträtt", en: "Line portrait" } },
-    { id: "portratt-3", bild: "images/tavlor/portratt-3.jpg", titel: { sv: "Klassiskt porträtt", en: "Classic portrait" } },
-    { id: "portratt-4", bild: "images/tavlor/portratt-4.jpg", titel: { sv: "Skuggspel", en: "Shadow play" } }
-  ],
   religion: [
     { id: "religion-kors", bild: "images/kors.jpeg", titel: { sv: "Tre kors i solnedgång", en: "Three crosses at sunset" } },
     { id: "religion-mecca", bild: "images/mecca.jpeg", titel: { sv: "Mecka", en: "Mecca" } }
@@ -110,12 +104,6 @@ const TAVLOR = {
     { id: "djur-giraff", bild: "images/giraff.jpeg", titel: { sv: "Giraff i solnedgång", en: "Giraffe at sunset" } },
     { id: "djur-groda", bild: "images/groda.jpeg", titel: { sv: "Grodan", en: "The frog" } },
     { id: "djur-orm", bild: "images/orm.jpeg", titel: { sv: "Ormen", en: "The snake" } }
-  ],
-  film: [
-    { id: "film-1", bild: "images/tavlor/film-1.jpg", titel: { sv: "Klassisk filmaffisch", en: "Classic movie poster" } },
-    { id: "film-2", bild: "images/tavlor/film-2.jpg", titel: { sv: "Ikonisk scen", en: "Iconic scene" } },
-    { id: "film-3", bild: "images/tavlor/film-3.jpg", titel: { sv: "Seriefigur", en: "Comic character" } },
-    { id: "film-4", bild: "images/tavlor/film-4.jpg", titel: { sv: "Minimalistisk affisch", en: "Minimalist poster" } }
   ]
 };
 
