@@ -143,29 +143,27 @@ function showToast(html) {
   showToast._t = setTimeout(() => toast.classList.remove("show"), 3800);
 }
 
-/* ---------------- Laddningsskärm ---------------- */
+/* ---------------- Laddningsskärm ----------------
+   Visas med full animation bara första gången per besök.
+   Vid byte mellan sidor hoppas den över helt. */
 function initLoader() {
   const loader = document.querySelector(".loader");
-  if (!loader) return Promise.resolve();
   let seen = false;
   try { seen = sessionStorage.getItem("latelier-loaded") === "1"; } catch (e) { /* */ }
-  // Full animation första besöket, kort därefter
-  const duration = REDUCED_MOTION ? 0 : seen ? 650 : 2600;
-  if (seen) loader.classList.add("quick");
   try { sessionStorage.setItem("latelier-loaded", "1"); } catch (e) { /* */ }
 
+  if (!loader || seen || REDUCED_MOTION) {
+    if (loader) loader.remove();
+    document.body.classList.add("loaded");
+    return Promise.resolve();
+  }
   return new Promise(resolve => {
-    const finish = () => {
+    setTimeout(() => {
       loader.classList.add("done");
       document.body.classList.add("loaded");
-      setTimeout(() => loader.remove(), REDUCED_MOTION ? 0 : 1000);
+      setTimeout(() => loader.remove(), 1000);
       resolve();
-    };
-    const start = () => setTimeout(finish, duration);
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
-    // Säkerhetsspärr om något laddar långsamt
-    setTimeout(finish, duration + 3000);
+    }, 1900);
   });
 }
 
@@ -217,22 +215,24 @@ function initHeader() {
   if (year) year.textContent = new Date().getFullYear();
 }
 
-/* ---------------- Spotlight-muspekare ---------------- */
+/* ---------------- Spotlight-muspekare ----------------
+   Ljuset flyttas med transform, vilket är billigt för webbläsaren. */
 function initSpotlight() {
-  if (!FINE_POINTER || REDUCED_MOTION) return;
-  const root = document.documentElement;
+  const light = document.querySelector(".spotlight");
+  if (!light || !FINE_POINTER || REDUCED_MOTION) return;
   document.body.classList.add("has-spotlight");
-  let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y, raf;
+  let x = innerWidth / 2, y = innerHeight * 0.4, cx = x, cy = y, raf = null;
+  const paint = () => { light.style.transform = `translate3d(${cx}px, ${cy}px, 0)`; };
+  paint();
   window.addEventListener("pointermove", e => {
     x = e.clientX; y = e.clientY;
     if (!raf) raf = requestAnimationFrame(loop);
   }, { passive: true });
-  // Ljuset följer mjukt efter – långsamt och elegant
+  // Ljuset följer mjukt efter
   function loop() {
-    cx += (x - cx) * 0.14;
-    cy += (y - cy) * 0.14;
-    root.style.setProperty("--mx", cx + "px");
-    root.style.setProperty("--my", cy + "px");
+    cx += (x - cx) * 0.18;
+    cy += (y - cy) * 0.18;
+    paint();
     raf = Math.abs(x - cx) + Math.abs(y - cy) > 0.5 ? requestAnimationFrame(loop) : null;
   }
 }

@@ -63,7 +63,7 @@ function renderGallery() {
     const title = item.titel[LANG] || item.titel.sv;
     return `<button type="button" class="gallery-item reveal" style="--d:${(i % 3) * 0.12}s" data-id="${esc(item.id)}">
       <span class="art" data-tilt="7">
-        <img src="${esc(item.bild)}" alt="${esc(title)}" loading="lazy" data-ph="${esc(title)}" data-hue="${CAT_HUE[currentTab]}">
+        <img src="${esc(item.bild)}" alt="${esc(title)}" loading="lazy" decoding="async" data-ph="${esc(title)}" data-hue="${CAT_HUE[currentTab]}">
         <span class="gallery-cta">${esc(t("gallery.choose"))}</span>
       </span>
       <span class="gallery-meta">
