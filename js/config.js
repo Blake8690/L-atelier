@@ -71,14 +71,14 @@ const TAVLOR = {
     { id: "stad-stockholm1", bild: "images/stockholm1.jpeg", titel: { sv: "Stockholm", en: "Stockholm" } },
     { id: "stad-stockholm-over", bild: "images/stockholm-over.jpeg", titel: { sv: "Stockholm från ovan", en: "Stockholm from above" } },
     { id: "stad-malmo", bild: "images/malmo.jpeg", titel: { sv: "Malmö", en: "Malmö" } },
-    { id: "stad-bat", bild: "images/bat.jpeg", titel: { sv: "Segelfartyget i hamnen", en: "Tall ship in the harbour" } },
+    { id: "stad-bat", bild: "images/bat.jpeg", titel: { sv: "Fartyg i Göteborgs hamn", en: "Ship in Gothenburg harbour" } },
     { id: "stad-london", bild: "images/london.jpeg", titel: { sv: "London", en: "London" } },
     { id: "stad-london2", bild: "images/london2.jpeg", titel: { sv: "Big Ben", en: "Big Ben" } },
     { id: "stad-paris", bild: "images/paris.jpeg", titel: { sv: "Paris", en: "Paris" } },
     { id: "stad-paris2", bild: "images/paris2.jpeg", titel: { sv: "Eiffeltornet", en: "The Eiffel Tower" } },
     { id: "stad-paris3", bild: "images/paris3.jpeg", titel: { sv: "Paris i solnedgång", en: "Paris at sunset" } },
     { id: "stad-newyork", bild: "images/newyork.jpeg", titel: { sv: "New York", en: "New York" } },
-    { id: "stad-houston", bild: "images/houston.jpeg", titel: { sv: "Houston", en: "Houston" } }
+    { id: "stad-houston", bild: "images/houston.jpeg", titel: { sv: "New York om natten", en: "New York by night" } }
   ],
   natur: [
     { id: "natur-norrsken", bild: "images/norrsken.jpeg", titel: { sv: "Norrsken", en: "Northern lights" } },
