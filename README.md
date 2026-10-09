@@ -13,7 +13,7 @@ Ren HTML, CSS och JavaScript. Inga byggsteg – öppna `index.html` eller lägg 
 - `PRISER` – priser för standardtavlor och egen design (platshållare nu)
 - `FRAKT`, `FRAKT_AKTIV`, `FRAKT_BERAKNING` – frakt per storlek, stäng av, eller räkna bara största tavlan
 - `SWISH_NUMMER` – byt `"KOMMER"` mot riktigt nummer (då visas QR-kod/Swish-knapp)
-- `EMAILJS` – `PUBLIC_KEY`, `SERVICE_ID`, `TEMPLATE_ID` (variablerna till mallen står i filen)
+- `ORDER_EPOST` – dit beställningarna mejlas (via FormSubmit). Första ordern ger ett aktiveringsmejl – klicka "Activate Form" en gång
 - `TAVLOR` – motiv per flik (titel på svenska/engelska + bildväg)
 - `TEAM` – namn, roller och bilder
 

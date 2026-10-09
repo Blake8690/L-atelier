@@ -45,20 +45,12 @@ const STORLEKAR = ["30x40", "40x50", "50x70", "70x100"];
    Byt "KOMMER" mot företagets Swish-nummer, t.ex. "1231234567". */
 const SWISH_NUMMER = "KOMMER";
 
-/* ---------- EMAILJS ----------
-   1. Skapa konto på https://www.emailjs.com
-   2. Lägg till en e-posttjänst (Gmail) → SERVICE_ID
-   3. Skapa en mall (template) → TEMPLATE_ID. Variabler som skickas:
-      {{order_nummer}} {{namn}} {{epost}} {{telefon}} {{adress}}
-      {{leverans}} {{rader}} {{delsumma}} {{frakt}} {{totalt}}
-      {{meddelande}} {{sprak}} {{till_epost}}
-   4. Account → Public key → PUBLIC_KEY */
-const EMAILJS = {
-  PUBLIC_KEY: "DIN_PUBLIC_KEY",
-  SERVICE_ID: "DIN_SERVICE_ID",
-  TEMPLATE_ID: "DIN_TEMPLATE_ID",
-  TILL_EPOST: "latelier2027@gmail.com"
-};
+/* ---------- ORDERMEJL ----------
+   Beställningar skickas till den här adressen via FormSubmit (formsubmit.co).
+   Inget konto eller lösenord behövs. Första gången någon beställer får
+   adressen ett mejl från FormSubmit – klicka "Activate Form" en gång,
+   sedan kommer alla ordrar fram. */
+const ORDER_EPOST = "latelier2027@gmail.com";
 
 /* ---------- KONTAKT ---------- */
 const KONTAKT = {

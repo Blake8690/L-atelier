@@ -175,43 +175,44 @@ function orderNumber() {
   return `LA${ymd}-${r}`;
 }
 
-// Orderrader i klartext (alltid på svenska, så att mailet blir lätt att läsa)
+// En rad per tavla i klartext (alltid på svenska, så att mejlet blir lätt att läsa)
 function orderLines(cart) {
-  return cart.map((item, i) => {
+  return cart.map(item => {
     const size = sizeLabel(item.storlek, item.orient);
-    const price = (Number(item.typ === "egen" ? PRISER.egen[item.storlek] : PRISER.standard[item.storlek]) || 0) * item.antal;
-    let line = `${i + 1}. `;
+    const price = itemPrice(item) * item.antal;
+    let line;
     if (item.typ === "standard") {
-      line += `Standardtavla: ${item.titel.sv} (${item.kategori}, id ${item.motivId})`;
+      line = `Standardtavla: ${item.titel.sv} (${item.kategori}, id ${item.motivId})`;
     } else if (item.lage === "upload") {
-      line += `Egen design – uppladdad bild: ${item.filnamn || "-"} (${item.pixlar || "?"} px)` +
-        `${item.lagUpplosning ? " [VARNING: låg upplösning]" : ""} – kunden mailar bilden. Rättigheter bekräftade: ja`;
+      line = `Egen design – uppladdad bild: ${item.filnamn || "-"} (${item.pixlar || "?"} px)` +
+        `${item.lagUpplosning ? " [VARNING: låg upplösning]" : ""} – kunden mejlar bilden. Rättigheter bekräftade: ja`;
     } else if (item.lage === "quote") {
-      line += `Egen design – citat: "${item.citat}"${item.forfattare ? " " + item.forfattare : ""} | Typsnitt: ${item.font} | Textfärg: ${item.farg} | Bakgrund: ${item.bakgrund}`;
+      line = `Egen design – citat: "${item.citat}"${item.forfattare ? " " + item.forfattare : ""} | Typsnitt: ${item.font} | Textfärg: ${item.farg} | Bakgrund: ${item.bakgrund}`;
     } else {
-      line += `Egen design – idé: ${item.ide}`;
+      line = `Egen design – idé: ${item.ide}`;
     }
-    return `${line}\n   Storlek: ${size} | Antal: ${item.antal} | Pris: ${price} kr`;
-  }).join("\n\n");
+    return `${line} | Storlek: ${size} | Antal: ${item.antal} | Pris: ${price} kr`;
+  });
 }
 
-function emailjsReady() {
-  return typeof emailjs !== "undefined" &&
-    EMAILJS.PUBLIC_KEY && !EMAILJS.PUBLIC_KEY.startsWith("DIN_") &&
-    EMAILJS.SERVICE_ID && !EMAILJS.SERVICE_ID.startsWith("DIN_") &&
-    EMAILJS.TEMPLATE_ID && !EMAILJS.TEMPLATE_ID.startsWith("DIN_");
-}
-
-async function sendOrderEmail(params) {
-  if (!emailjsReady()) {
-    console.warn("[L'atelier] EmailJS är inte konfigurerat – lägg in nycklarna i js/config.js. Ordern:", params);
-    return true;
-  }
+/* Ordern skickas via FormSubmit (formsubmit.co) till ORDER_EPOST.
+   Första gången skickar FormSubmit ett aktiveringsmejl till den adressen –
+   klicka på "Activate Form" i det mejlet, sedan kommer alla ordrar fram. */
+async function sendOrderEmail(fields) {
   try {
-    await emailjs.send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, params, { publicKey: EMAILJS.PUBLIC_KEY });
+    const res = await fetch(`https://formsubmit.co/ajax/${ORDER_EPOST}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(fields)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") {
+      console.error("[L'atelier] Ordern kunde inte mejlas:", data.message || res.status);
+      return false;
+    }
     return true;
   } catch (err) {
-    console.error("[L'atelier] EmailJS-fel:", err);
+    console.error("[L'atelier] Ordern kunde inte mejlas:", err);
     return false;
   }
 }
@@ -231,24 +232,30 @@ async function placeOrder() {
   const total = sub + ship;
   const hasUpload = cart.some(i => i.typ === "egen" && i.lage === "upload");
 
-  const params = {
-    order_nummer: nr,
-    namn: customer.namn,
-    epost: customer.epost,
-    telefon: customer.telefon,
-    adress: `${customer.adress}, ${customer.postnummer} ${customer.ort}`,
-    leverans: delivery === "frakt" ? `Frakt (${ship} kr)` : "Mötas upp – kontakta kunden om plats",
-    rader: orderLines(cart),
-    delsumma: `${sub} kr`,
-    frakt: `${ship} kr`,
-    totalt: `${total} kr`,
-    meddelande: (customer.meddelande || "-") + (hasUpload ? "\n\nOBS: Ordern innehåller en uppladdad bild som kunden mailar separat med ordernumret." : ""),
-    sprak: LANG,
-    till_epost: EMAILJS.TILL_EPOST,
-    reply_to: customer.epost
+  // Fältnamnen blir rubrikerna i mejlet
+  const fields = {
+    _subject: `Ny beställning ${nr} – ${total} kr`,
+    _template: "table",
+    _captcha: "false",
+    _replyto: customer.epost,
+    "Ordernummer": nr,
+    "Namn": customer.namn,
+    "E-post": customer.epost,
+    "Telefon": customer.telefon,
+    "Adress": `${customer.adress}, ${customer.postnummer} ${customer.ort}`,
+    "Leverans": delivery === "frakt" ? `Frakt (${ship} kr)` : "Mötas upp – kontakta kunden om plats"
   };
+  orderLines(cart).forEach((line, i) => { fields[`Tavla ${i + 1}`] = line; });
+  Object.assign(fields, {
+    "Delsumma": `${sub} kr`,
+    "Frakt": `${ship} kr`,
+    "Totalt att betala": `${total} kr`,
+    "Meddelande": customer.meddelande || "-",
+    "Bild mejlas separat": hasUpload ? "JA – kunden mejlar sin bild med ordernumret" : "Nej",
+    "Språk på sidan": LANG
+  });
 
-  const ok = await sendOrderEmail(params);
+  const ok = await sendOrderEmail(fields);
   saveCart([]);
   showConfirmation({ nr, total, hasUpload, mailFailed: !ok });
 }
