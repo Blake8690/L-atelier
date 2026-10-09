@@ -769,7 +769,6 @@ body:not(.has-spotlight) .art img { filter: none; }
 }
 .gallery-item { text-align: left; display: block; width: 100%; }
 .gallery-item .art { aspect-ratio: 4 / 5; overflow: hidden; }
-.gallery-item:nth-child(3n + 2) { margin-top: clamp(0px, 4vw, 60px); }
 .gallery-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 18px; }
 .gallery-title { font-family: var(--serif); font-size: 22px; line-height: 1.2; }
 .gallery-price { font-size: 12px; color: var(--muted); letter-spacing: .08em; white-space: nowrap; }
@@ -1331,8 +1330,6 @@ body:not(.has-spotlight) .art img { filter: none; }
   .paths { grid-template-columns: 1fr; }
   .path-card { min-height: 0; }
   .gallery { grid-template-columns: 1fr 1fr; }
-  .gallery-item:nth-child(3n + 2) { margin-top: 0; }
-  .gallery-item:nth-child(even) { margin-top: 40px; }
   .modal-box { grid-template-columns: 1fr; }
   .modal-art .art { width: min(70%, 260px); }
   .summary { position: relative; top: 0; }
