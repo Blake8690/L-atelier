@@ -934,6 +934,7 @@ body:not(.has-spotlight) .art img { filter: none; }
 .notice.warn { border-color: rgba(217, 138, 122, .6); background: rgba(217, 138, 122, .08); color: #f0c4b9; }
 .notice.good { border-color: rgba(168, 196, 138, .5); background: rgba(168, 196, 138, .06); color: #d4e5c3; }
 .form-error { color: var(--danger); font-size: 14px; min-height: 1.4em; margin-top: 10px; }
+.form-error .error-detail { display: block; margin-top: 6px; font-size: 11px; color: var(--muted); }
 
 /* ---------------- Skapa egen ---------------- */
 .studio { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 60px); align-items: start; }

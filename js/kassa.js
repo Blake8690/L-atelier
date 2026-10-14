@@ -354,13 +354,14 @@ async function sendOrderEmail(fields) {
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || String(data.success) !== "true") {
-      console.error("[L'atelier] Ordern kunde inte mejlas:", data.message || res.status);
-      return false;
+      const msg = data.message || `HTTP ${res.status}`;
+      console.error("[L'atelier] Ordern kunde inte mejlas:", msg);
+      return { ok: false, msg };
     }
-    return true;
+    return { ok: true };
   } catch (err) {
     console.error("[L'atelier] Ordern kunde inte mejlas:", err);
-    return false;
+    return { ok: false, msg: String(err && err.message || err) };
   }
 }
 
@@ -402,12 +403,18 @@ async function placeOrder() {
     "Språk på sidan": LANG
   });
 
-  const ok = await sendOrderEmail(fields);
+  const result = await sendOrderEmail(fields);
   btn.disabled = false;
-  if (!ok) {
-    // Ordern kom inte fram – behåll varukorgen så att kunden kan försöka igen
+  if (!result.ok) {
+    // Ordern kom inte fram – behåll varukorgen så att kunden kan försöka igen.
+    // Den tekniska orsaken visas i liten text för att underlätta felsökning.
     renderSummary();
-    document.getElementById("order-error").textContent = t("kassa.send.error");
+    const errEl = document.getElementById("order-error");
+    errEl.textContent = t("kassa.send.error");
+    const detail = document.createElement("small");
+    detail.className = "error-detail";
+    detail.textContent = result.msg;
+    errEl.appendChild(detail);
     return;
   }
   saveCart([]);
