@@ -46,12 +46,11 @@
           <li><a href="tavlor.html" aria-current="page" data-i18n="nav.tavlor">Tavlor</a></li>
           <li><a href="index.html#om-oss" data-i18n="nav.about">Om oss</a></li>
           <li><a href="index.html#kontakt" data-i18n="nav.contact">Kontakt</a></li>
-          <li><a href="kassa.html" data-i18n="nav.kassa">Kassa</a></li>
         </ul>
       </nav>
       <div class="header-actions">
         <button class="icon-btn lang-toggle" type="button"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span></button>
-        <a class="icon-btn" href="kassa.html" data-i18n-aria="nav.cart" aria-label="Varukorg">
+        <a class="icon-btn" href="#kassa" data-open-cart data-i18n-aria="nav.cart" aria-label="Varukorg">
           <svg viewBox="0 0 24 24"><path d="M5 7h14l-1.2 13H6.2L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
           <span class="cart-count" hidden>0</span>
         </a>
@@ -198,6 +197,8 @@
 
             <!-- Storlek & format -->
             <div class="studio-section">
+              <span class="field-label" data-i18n="product.choose">Produkt</span>
+              <div class="chips" role="radiogroup" id="product-chips"></div>
               <span class="field-label" data-i18n="egen.size">Storlek</span>
               <div class="chips" role="radiogroup" id="size-chips"></div>
               <span class="field-label" data-i18n="egen.orient">Format</span>
@@ -227,6 +228,8 @@
       <div class="modal-body">
         <div class="kicker" id="modal-cat"></div>
         <h3 id="modal-title"></h3>
+        <span class="field-label" data-i18n="product.choose">Produkt</span>
+        <div class="chips" role="radiogroup" id="modal-products"></div>
         <span class="field-label" data-i18n="modal.size">Storlek</span>
         <div class="chips" role="radiogroup" id="modal-sizes"></div>
         <span class="field-label" data-i18n="modal.price">Pris</span>
@@ -255,5 +258,6 @@
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/tavlor.js"></script>
+  <script src="js/kassa.js"></script>
 </body>
 </html>

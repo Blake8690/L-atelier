@@ -8,7 +8,6 @@ const TABS = ["stad", "natur", "religion", "djur", "egen"];
 let currentTab = "stad";
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const minStd = () => Math.min(...STORLEKAR.map(s => Number(PRISER.standard[s]) || Infinity));
 
 /* ---------------- Flikar ---------------- */
 function selectTab(name, focus) {
@@ -68,7 +67,7 @@ function renderGallery() {
       </span>
       <span class="gallery-meta">
         <span class="gallery-title">${esc(title)}</span>
-        <span class="gallery-price">${esc(t("from"))} ${formatPrice(minStd())}</span>
+        <span class="gallery-price">${esc(t("from"))} ${formatPrice(lowestPrice())}</span>
       </span>
     </button>`;
   }).join("");
@@ -82,7 +81,7 @@ function renderGallery() {
 
 /* ---------------- Modal ---------------- */
 const modal = {
-  el: null, item: null, size: STORLEKAR[0], returnFocus: null
+  el: null, item: null, produkt: PRODUKTER[0], size: sizesFor(PRODUKTER[0])[0], returnFocus: null
 };
 
 function findItem(id) {
@@ -102,20 +101,41 @@ function renderModal() {
   const art = document.getElementById("modal-art");
   art.innerHTML = `<img src="${esc(it.bild)}" alt="${esc(title)}" data-ph="${esc(title)}" data-hue="${CAT_HUE[it.kategori]}">`;
   initPlaceholders(art);
+  renderProductChips(document.getElementById("modal-products"), modal.produkt, p => {
+    modal.produkt = p;
+    if (!sizesFor(p).includes(modal.size)) modal.size = sizesFor(p)[0];
+    renderModalSizes();
+  });
+  renderModalSizes();
+}
+
+function renderModalSizes() {
   const sizes = document.getElementById("modal-sizes");
-  sizes.innerHTML = STORLEKAR.map(s => `<button type="button" class="chip" role="radio" data-size="${s}" aria-checked="${s === modal.size}">${sizeLabel(s)}<small>${formatPrice(PRISER.standard[s])}</small></button>`).join("");
+  sizes.innerHTML = sizesFor(modal.produkt).map(s => `<button type="button" class="chip" role="radio" data-size="${s}" aria-checked="${s === modal.size}">${sizeLabel(s)}<small>${formatPrice(priceFor(modal.produkt, s))}</small></button>`).join("");
   sizes.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
     modal.size = c.dataset.size;
     sizes.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-checked", String(x === c)));
-    document.getElementById("modal-price").textContent = formatPrice(PRISER.standard[modal.size]);
+    document.getElementById("modal-price").textContent = formatPrice(priceFor(modal.produkt, modal.size));
   }));
-  document.getElementById("modal-price").textContent = formatPrice(PRISER.standard[modal.size]);
+  document.getElementById("modal-price").textContent = formatPrice(priceFor(modal.produkt, modal.size));
+}
+
+/* Val mellan canvastavla och poster (används i modalen och i Skapa egen) */
+function renderProductChips(container, current, onPick) {
+  container.innerHTML = PRODUKTER.map(p =>
+    `<button type="button" class="chip" role="radio" data-produkt="${p}" aria-checked="${p === current}">${esc(t("product." + p))}<small>${esc(t("from"))} ${formatPrice(Math.min(...sizesFor(p).map(s => priceFor(p, s))))}</small></button>`
+  ).join("");
+  container.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+    container.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-checked", String(x === c)));
+    onPick(c.dataset.produkt);
+  }));
 }
 
 function openModal(id, trigger) {
   modal.item = findItem(id);
   if (!modal.item) return;
-  modal.size = STORLEKAR[0];
+  modal.produkt = PRODUKTER[0];
+  modal.size = sizesFor(modal.produkt)[0];
   modal.returnFocus = trigger;
   renderModal();
   modal.el.classList.add("open");
@@ -133,7 +153,7 @@ function closeModal() {
 }
 
 function addedToast() {
-  showToast(`<span>✦ ${esc(t("added"))}</span><a href="kassa.html">${esc(t("added.go"))} →</a>`);
+  showToast(`<span>✦ ${esc(t("added"))}</span><a href="#kassa">${esc(t("added.go"))} →</a>`);
 }
 
 function initModal() {
@@ -158,6 +178,7 @@ function initModal() {
       kategori: it.kategori,
       titel: it.titel,
       bild: it.bild,
+      produkt: modal.produkt,
       storlek: modal.size
     });
     closeModal();
@@ -191,7 +212,8 @@ const DPI_MIN = 100;
 
 const studio = {
   mode: "upload",
-  size: STORLEKAR[0],
+  produkt: PRODUKTER[0],
+  size: sizesFor(PRODUKTER[0])[0],
   orient: "portrait",
   room: "living",
   image: null,       // { url, w, h, name, thumb }
@@ -213,6 +235,7 @@ const studio = {
     canvas.style.setProperty("--cw", w);
     canvas.style.setProperty("--ch", h);
     canvas.style.setProperty("--cb", ROOMS[this.room].bottom);
+    canvas.classList.toggle("is-poster", this.produkt === "poster");
     document.getElementById("room-dims").textContent = `${w}×${h} cm`;
     const label = document.getElementById("room-label");
     label.dataset.i18n = "egen.room." + this.room;
@@ -221,7 +244,7 @@ const studio = {
     note.dataset.i18n = ROOMS[this.room].note;
     note.textContent = t(note.dataset.i18n);
     room.querySelectorAll(".furniture").forEach(f => { f.hidden = f.dataset.for !== this.room; });
-    document.getElementById("egen-price").textContent = formatPrice(PRISER.egen[this.size]);
+    document.getElementById("egen-price").textContent = formatPrice(priceFor(this.produkt, this.size));
     this.renderCanvas();
     this.checkResolution();
   },
@@ -284,8 +307,8 @@ function radioGroup(container, attr, onPick) {
 
 function renderSizeChips() {
   const c = document.getElementById("size-chips");
-  c.innerHTML = STORLEKAR.map(s =>
-    `<button type="button" class="chip" role="radio" data-size="${s}" aria-checked="${s === studio.size}">${s.replace("x", "×")}<small>${formatPrice(PRISER.egen[s])}</small></button>`
+  c.innerHTML = sizesFor(studio.produkt).map(s =>
+    `<button type="button" class="chip" role="radio" data-size="${s}" aria-checked="${s === studio.size}">${s.replace("x", "×")}<small>${formatPrice(priceFor(studio.produkt, s))}</small></button>`
   ).join("");
   radioGroup(c, "size", v => { studio.size = v; studio.update(); });
 }
@@ -359,7 +382,17 @@ function handleFile(file) {
   img.src = url;
 }
 
+function renderStudioProducts() {
+  renderProductChips(document.getElementById("product-chips"), studio.produkt, p => {
+    studio.produkt = p;
+    if (!sizesFor(p).includes(studio.size)) studio.size = sizesFor(p)[0];
+    renderSizeChips();
+    studio.update();
+  });
+}
+
 function initStudio() {
+  renderStudioProducts();
   renderSizeChips();
   renderFontChips();
   renderSwatches("text-swatches", TEXT_COLORS, "color");
@@ -399,7 +432,7 @@ function initStudio() {
 function addCustomToCart() {
   const err = document.getElementById("egen-error");
   err.textContent = "";
-  const base = { typ: "egen", lage: studio.mode, storlek: studio.size, orient: studio.orient, rum: studio.room };
+  const base = { typ: "egen", lage: studio.mode, produkt: studio.produkt, storlek: studio.size, orient: studio.orient, rum: studio.room };
 
   if (studio.mode === "upload") {
     if (!studio.image) { err.textContent = t("egen.noimage"); return; }
@@ -448,6 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("langchange", () => {
   if (currentTab !== "egen") renderGallery();
+  renderStudioProducts();
   renderSizeChips();
   studio.update();
   if (modal.el && modal.el.classList.contains("open")) renderModal();

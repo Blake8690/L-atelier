@@ -1,34 +1,75 @@
 /* =========================================================
    L'atelier UF – STARTSIDAN
-   Storlekar, "från"-priser och teamet byggs från config.js.
+   Infoflikar, priskort och teamet byggs från config.js.
    ========================================================= */
 
-function minPrice(table) {
-  return Math.min(...STORLEKAR.map(s => Number(table[s]) || Infinity));
+const INFO_TABS = ["om-oss", "sa-funkar", "priser", "faq", "kontakt"];
+
+/* ---------------- Infoflikar ---------------- */
+function selectInfo(name, opts = {}) {
+  if (!INFO_TABS.includes(name)) name = "om-oss";
+  document.querySelectorAll(".info-tabs .tab").forEach(tab => {
+    const on = tab.dataset.info === name;
+    tab.setAttribute("aria-selected", String(on));
+    tab.tabIndex = on ? 0 : -1;
+    if (on && opts.focus) tab.focus();
+  });
+  INFO_TABS.forEach(n => { document.getElementById("ipanel-" + n).hidden = n !== name; });
+  if (opts.scroll) {
+    document.getElementById("info").scrollIntoView({ behavior: REDUCED_MOTION ? "auto" : "smooth" });
+  }
 }
 
-function renderHome() {
-  document.querySelectorAll("[data-price-from]").forEach(el => {
-    el.textContent = formatPrice(minPrice(PRISER[el.dataset.priceFrom]));
+function initInfoTabs() {
+  const tabs = [...document.querySelectorAll(".info-tabs .tab")];
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => {
+      selectInfo(tab.dataset.info);
+      history.replaceState(null, "", "#" + tab.dataset.info);
+    });
+    tab.addEventListener("keydown", e => {
+      let j = null;
+      if (e.key === "ArrowRight") j = (i + 1) % tabs.length;
+      if (e.key === "ArrowLeft") j = (i - 1 + tabs.length) % tabs.length;
+      if (j !== null) { e.preventDefault(); selectInfo(tabs[j].dataset.info, { focus: true }); }
+    });
   });
+  // Länkar som index.html#kontakt öppnar rätt flik
+  const fromHash = () => {
+    const h = location.hash.replace("#", "");
+    if (INFO_TABS.includes(h)) selectInfo(h, { scroll: true });
+  };
+  window.addEventListener("hashchange", fromHash);
+  // Klick på menyn när man redan står på samma flik
+  document.querySelectorAll('a[href^="index.html#"], a[href^="#"]').forEach(a => {
+    const h = a.getAttribute("href").split("#")[1];
+    if (INFO_TABS.includes(h)) a.addEventListener("click", () => setTimeout(() => selectInfo(h, { scroll: true }), 0));
+  });
+  fromHash();
+}
 
-  const sizes = document.getElementById("sizes");
-  if (sizes) {
-    sizes.innerHTML = STORLEKAR.map(s => {
-      const [w, h] = s.split("x");
-      return `<div class="size-item">
-        <div class="size-frame" style="--w:${w};--h:${h}"></div>
-        <div class="size-name">${w}×${h}</div>
-        <div class="size-price">${t("sizes.std")} <b>${formatPrice(PRISER.standard[s])}</b><br>${t("sizes.own")} <b>${formatPrice(PRISER.egen[s])}</b></div>
-      </div>`;
-    }).join("");
+/* ---------------- Priser ---------------- */
+function renderHome() {
+  const cards = document.getElementById("price-cards");
+  if (cards) {
+    cards.innerHTML = PRODUKTER.map(p => `
+      <div class="price-card">
+        <h3>${t("product." + p)}</h3>
+        <p class="muted">${t("product." + p + ".text")}</p>
+        <ul class="price-list">
+          ${sizesFor(p).map(s => {
+            const [w, h] = s.split("x");
+            return `<li><span class="price-frame" style="--w:${w};--h:${h}"></span><span class="price-size">${w}×${h} cm</span><span class="price-val">${formatPrice(priceFor(p, s))}</span></li>`;
+          }).join("")}
+        </ul>
+      </div>`).join("");
   }
 
   const team = document.getElementById("team");
   if (team) {
-    team.innerHTML = TEAM.map((m, i) => {
+    team.innerHTML = TEAM.map(m => {
       const initials = m.namn.split(" ").map(p => p[0] || "").join("").slice(0, 2);
-      return `<div class="member reveal" style="--d:${(i % 3) * 0.12}s">
+      return `<div class="member">
         <div class="member-photo">
           <img src="${m.bild}" alt="${m.namn}" loading="lazy" data-avatar="${initials}">
         </div>
@@ -48,9 +89,11 @@ function renderHome() {
       if (img.complete && img.naturalWidth === 0) swap();
       else img.addEventListener("error", swap, { once: true });
     });
-    if (document.body.classList.contains("loaded")) initReveal(team);
   }
 }
 
-document.addEventListener("DOMContentLoaded", renderHome);
+document.addEventListener("DOMContentLoaded", () => {
+  renderHome();
+  initInfoTabs();
+});
 document.addEventListener("langchange", renderHome);

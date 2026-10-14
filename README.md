@@ -5,13 +5,14 @@ Ren HTML, CSS och JavaScript. Inga byggsteg – öppna `index.html` eller lägg 
 ## Sidor
 | Fil | Innehåll |
 |---|---|
-| `index.html` | Hem, Om oss (team), FAQ, Kontakt |
+| `index.html` | Hem med flikar: Om oss (team), Så funkar det, Storlekar & priser, Frågor & svar, Kontakt |
 | `tavlor.html` | Flikar med galleri + **Skapa egen** (live-mockup på vägg) |
-| `kassa.html` | Varukorg → uppgifter → leverans → beställ → Swish |
+
+Varukorg och kassa är en panel som glider in från höger på båda sidorna (varukorgsikonen).
 
 ## Det här ändrar du i `js/config.js`
-- `PRISER` – priser för standardtavlor och egen design (platshållare nu)
-- `FRAKT`, `FRAKT_AKTIV`, `FRAKT_BERAKNING` – frakt per storlek, stäng av, eller räkna bara största tavlan
+- `PRISER` – priser och storlekar för canvastavla och poster (samma för motiv och egen design)
+- `FRAKT` – fraktkostnad per beställning, `0` = gratis frakt
 - `SWISH_NUMMER` – byt `"KOMMER"` mot riktigt nummer (då visas QR-kod/Swish-knapp)
 - `ORDER_EPOST` – dit beställningarna mejlas (via FormSubmit). Första ordern ger ett aktiveringsmejl – klicka "Activate Form" en gång
 - `TAVLOR` – motiv per flik (titel på svenska/engelska + bildväg)

@@ -1,45 +1,28 @@
 /* =========================================================
    L'atelier UF – INSTÄLLNINGAR
    Allt som ofta ändras ligger här: priser, frakt, Swish,
-   EmailJS och tavlorna i galleriet.
+   ordermejl, tavlorna i galleriet och teamet.
    ========================================================= */
 
 /* ---------- PRISER (kr) ----------
-   PLATSHÅLLARE – fyll i riktiga priser.
-   standard = färdiga motiv från galleriet
-   egen     = egen design (uppladdad bild, citat eller idé) */
+   Två produkter: canvastavla och poster. Storlekarna som finns för
+   varje produkt styrs av listan nedan – lägg till/ta bort fritt.
+   Samma priser gäller för galleriets motiv och egen design. */
 const PRISER = {
-  standard: {
-    "30x40": 299,
-    "40x50": 399,
-    "50x70": 549,
-    "70x100": 849
+  canvas: {
+    "30x40": 410,
+    "40x50": 530,
+    "50x70": 650
   },
-  egen: {
-    "30x40": 349,
-    "40x50": 449,
-    "50x70": 649,
-    "70x100": 949
+  poster: {
+    "50x70": 280,
+    "70x100": 410
   }
 };
 
-/* ---------- FRAKT (kr per storlek) ----------
-   Sätt FRAKT_AKTIV = false för att stänga av frakt helt
-   (då finns bara "Mötas upp" i kassan).
-   FRAKT_BERAKNING:
-     "per_tavla" – fraktpriset räknas för varje tavla i ordern
-     "storsta"   – bara den största tavlans fraktpris räknas */
-const FRAKT_AKTIV = true;
-const FRAKT_BERAKNING = "per_tavla";
-const FRAKT = {
-  "30x40": 129,
-  "40x50": 169,
-  "50x70": 189,
-  "70x100": 349
-};
-
-/* ---------- STORLEKAR (cm, bredd x höjd i stående format) ---------- */
-const STORLEKAR = ["30x40", "40x50", "50x70", "70x100"];
+/* ---------- FRAKT (kr per beställning) ----------
+   0 = gratis frakt. Skriv t.ex. 99 om frakten ska kosta något. */
+const FRAKT = 0;
 
 /* ---------- SWISH ----------
    Byt "KOMMER" mot företagets Swish-nummer, t.ex. "1231234567". */

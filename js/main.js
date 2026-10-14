@@ -66,10 +66,21 @@ function sizeLabel(size, orient) {
   return orient === "landscape" ? `${h}×${w} cm` : `${w}×${h} cm`;
 }
 
+/* ---------------- Produkter & priser ---------------- */
+const PRODUKTER = Object.keys(PRISER);              // ["canvas", "poster"]
+function sizesFor(produkt) { return Object.keys(PRISER[produkt] || {}); }
+function priceFor(produkt, size) { return Number((PRISER[produkt] || {})[size]) || 0; }
+function lowestPrice() {
+  return Math.min(...PRODUKTER.flatMap(p => sizesFor(p).map(s => priceFor(p, s))));
+}
+
 /* ---------------- Varukorg ---------------- */
 const CART_KEY = "latelier-cart";
 
-function getCart() { return store.get(CART_KEY, []); }
+// Rader med en produkt/storlek som inte längre finns (t.ex. efter prisändring) rensas bort
+function getCart() {
+  return store.get(CART_KEY, []).filter(i => priceFor(i.produkt, i.storlek) > 0);
+}
 
 function saveCart(cart) {
   store.set(CART_KEY, cart);
@@ -77,16 +88,13 @@ function saveCart(cart) {
   document.dispatchEvent(new CustomEvent("cartchange"));
 }
 
-function itemPrice(item) {
-  const table = item.typ === "egen" ? PRISER.egen : PRISER.standard;
-  return Number(table[item.storlek]) || 0;
-}
+function itemPrice(item) { return priceFor(item.produkt, item.storlek); }
 
 function addToCart(item) {
   const cart = getCart();
   // Slå ihop identiska standardtavlor
   if (item.typ === "standard") {
-    const same = cart.find(i => i.typ === "standard" && i.motivId === item.motivId && i.storlek === item.storlek);
+    const same = cart.find(i => i.typ === "standard" && i.motivId === item.motivId && i.produkt === item.produkt && i.storlek === item.storlek);
     if (same) { same.antal += 1; saveCart(cart); return; }
   }
   item.id = "i" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
