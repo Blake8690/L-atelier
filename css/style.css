@@ -532,7 +532,6 @@ body:not(.has-spotlight) .art img { filter: none; }
   line-height: 1.2;
   font-style: italic;
 }
-.intro-quote::before { content: "“"; display: block; color: var(--gold); font-size: 2.4em; line-height: .6; margin-bottom: 8px; }
 
 /* ---------------- Två vägar ---------------- */
 .paths { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); }
