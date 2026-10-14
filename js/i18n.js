@@ -227,7 +227,7 @@ const I18N = {
     "kassa.order": "Beställ",
     "kassa.sending": "Skickar…",
     "kassa.terms": "Genom att beställa godkänner du att vi kontaktar dig om din order.",
-    "kassa.mail.error": "Ordern kunde inte mailas automatiskt. Skicka gärna ditt ordernummer till latelier2027@gmail.com så hjälper vi dig.",
+    "kassa.send.error": "Beställningen kunde inte skickas just nu. Försök igen om en stund, eller mejla oss på latelier2027@gmail.com.",
 
     /* --- Bekräftelse --- */
     "confirm.kicker": "Tack för din beställning",
@@ -463,7 +463,7 @@ const I18N = {
     "kassa.order": "Place order",
     "kassa.sending": "Sending…",
     "kassa.terms": "By ordering you agree that we may contact you about your order.",
-    "kassa.mail.error": "The order could not be emailed automatically. Please send your order number to latelier2027@gmail.com and we'll help you.",
+    "kassa.send.error": "Your order could not be sent right now. Please try again in a moment, or email us at latelier2027@gmail.com.",
 
     "confirm.kicker": "Thank you for your order",
     "confirm.title": "Your order has been received",

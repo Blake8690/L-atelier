@@ -128,7 +128,6 @@ const DRAWER_HTML = `
         </div>
         <p class="notice" id="c-image" hidden></p>
         <p class="notice" id="c-meet" data-i18n="confirm.meet" hidden></p>
-        <p class="notice warn" id="c-mail-error" data-i18n="kassa.mail.error" hidden></p>
         <p class="lead" style="margin:22px auto" data-i18n="confirm.next"></p>
         <button type="button" class="btn btn-ghost" data-drawer-close data-i18n="modal.close">Stäng</button>
       </div>
@@ -405,8 +404,14 @@ async function placeOrder() {
 
   const ok = await sendOrderEmail(fields);
   btn.disabled = false;
+  if (!ok) {
+    // Ordern kom inte fram – behåll varukorgen så att kunden kan försöka igen
+    renderSummary();
+    document.getElementById("order-error").textContent = t("kassa.send.error");
+    return;
+  }
   saveCart([]);
-  showConfirmation({ nr, total, hasUpload, mailFailed: !ok });
+  showConfirmation({ nr, total, hasUpload });
 }
 
 /* ---------------- Bekräftelse + Swish ---------------- */
@@ -422,7 +427,7 @@ function loadQrLib() {
   });
 }
 
-function showConfirmation({ nr, total, hasUpload, mailFailed }) {
+function showConfirmation({ nr, total, hasUpload }) {
   document.getElementById("checkout-flow").hidden = true;
   document.getElementById("drawer-foot").hidden = true;
   const box = document.getElementById("confirm");
@@ -456,7 +461,6 @@ function showConfirmation({ nr, total, hasUpload, mailFailed }) {
   img.hidden = !hasUpload;
   if (hasUpload) img.innerHTML = t("confirm.image", { order: escK(nr) });
   document.getElementById("c-meet").hidden = delivery !== "mote";
-  document.getElementById("c-mail-error").hidden = !mailFailed;
 
   showConfirmation.last = { nr, total, hasUpload };
   document.querySelector("#drawer .drawer-body").scrollTop = 0;
