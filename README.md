@@ -16,6 +16,7 @@ Varukorg och kassa är en panel som glider in från höger på båda sidorna (va
 - `SWISH_NUMMER` – byt `"KOMMER"` mot riktigt nummer (då visas QR-kod/Swish-knapp)
 - `ORDER_EPOST` – dit beställningarna mejlas (via FormSubmit). Första ordern ger ett aktiveringsmejl – klicka "Activate Form" en gång
 - `TAVLOR` – motiv per flik (titel på svenska/engelska + bildväg)
+- `SASONG` – tillfällig säsongsflik (jul, nyår, alla hjärtans dag …): namn, ikon, bilder och ev. datum då den ska synas
 - `TEAM` – namn, roller och bilder
 
 Alla texter (svenska + engelska) ligger i `js/i18n.js`.

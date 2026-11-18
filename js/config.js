@@ -10,13 +10,14 @@
    Samma priser gäller för galleriets motiv och egen design. */
 const PRISER = {
   canvas: {
-    "30x40": 410,
-    "40x50": 530,
-    "50x70": 650
+    "30x40": 549,
+    "40x50": 699,
+    "50x70": 899,
+    "70x100": 1049
   },
   poster: {
-    "50x70": 280,
-    "70x100": 410
+    "50x70": 349,
+    "70x100": 549
   }
 };
 
@@ -25,8 +26,9 @@ const PRISER = {
 const FRAKT = 0;
 
 /* ---------- SWISH ----------
-   Byt "KOMMER" mot företagets Swish-nummer, t.ex. "1231234567". */
-const SWISH_NUMMER = "KOMMER";
+   Företagets Swish-nummer. Mellanslag går bra – de tas bort automatiskt
+   i QR-koden och i Swish-knappen. */
+const SWISH_NUMMER = "123 717 06 99";
 
 /* ---------- ORDERMEJL ----------
    Beställningar skickas till den här adressen via FormSubmit (formsubmit.co).
@@ -79,6 +81,26 @@ const TAVLOR = {
     { id: "djur-giraff", bild: "images/giraff.jpeg", titel: { sv: "Giraff i solnedgång", en: "Giraffe at sunset" } },
     { id: "djur-groda", bild: "images/groda.jpeg", titel: { sv: "Grodan", en: "The frog" } },
     { id: "djur-orm", bild: "images/orm.jpeg", titel: { sv: "Ormen", en: "The snake" } }
+  ]
+};
+
+/* ---------- SÄSONGSFLIK (tillfällig) ----------
+   En extra flik först i galleriet för t.ex. jul, nyår eller alla hjärtans dag.
+   – aktiv: true visar fliken, false döljer den.
+   – visaFran / visaTill (valfritt, "ÅÅÅÅ-MM-DD"): fliken syns bara mellan
+     de datumen. Lämna "" för att visa den hela tiden medan aktiv är true.
+   – Byt namn, ikon och bilder inför nästa högtid. Lägg bilderna i
+     /images/sasong/ och skriv in filnamnen nedan. */
+const SASONG = {
+  aktiv: true,
+  visaFran: "",
+  visaTill: "",
+  ikon: "❄",
+  namn: { sv: "Jul", en: "Christmas" },
+  tavlor: [
+    { id: "sasong-1", bild: "images/sasong/jul-1.jpg", titel: { sv: "Julmotiv 1", en: "Christmas motif 1" } },
+    { id: "sasong-2", bild: "images/sasong/jul-2.jpg", titel: { sv: "Julmotiv 2", en: "Christmas motif 2" } },
+    { id: "sasong-3", bild: "images/sasong/jul-3.jpg", titel: { sv: "Julmotiv 3", en: "Christmas motif 3" } }
   ]
 };
 

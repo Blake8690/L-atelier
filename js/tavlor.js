@@ -3,15 +3,37 @@
    Flikar, galleri, storleksval och "Skapa egen"-verktyget.
    ========================================================= */
 
-const CAT_HUE = { stad: 30, natur: 110, portratt: 15, religion: 45, djur: 60, film: 260 };
-const TABS = ["stad", "natur", "religion", "djur", "egen"];
-let currentTab = "stad";
+const CAT_HUE = { sasong: 0, stad: 30, natur: 110, portratt: 15, religion: 45, djur: 60, film: 260 };
+
+/* Säsongsfliken (jul, nyår …) styrs av SASONG i config.js */
+function sasongAktiv() {
+  if (typeof SASONG === "undefined" || !SASONG.aktiv || !SASONG.tavlor || !SASONG.tavlor.length) return false;
+  const idag = new Date().toISOString().slice(0, 10);
+  if (SASONG.visaFran && idag < SASONG.visaFran) return false;
+  if (SASONG.visaTill && idag > SASONG.visaTill) return false;
+  return true;
+}
+const SASONG_PA = sasongAktiv();
+const TABS = [...(SASONG_PA ? ["sasong"] : []), "stad", "natur", "religion", "djur", "egen"];
+let currentTab = TABS[0];
+
+function sasongNamn() { return SASONG.namn[LANG] || SASONG.namn.sv; }
+function categoryName(kat) { return kat === "sasong" ? sasongNamn() : t("tab." + kat); }
+function galleryList(kat) { return kat === "sasong" ? SASONG.tavlor : (TAVLOR[kat] || []); }
+
+function renderSeasonTab() {
+  const tab = document.getElementById("tab-sasong");
+  if (!tab) return;
+  if (!SASONG_PA) { tab.remove(); return; }
+  tab.hidden = false;
+  tab.textContent = `${SASONG.ikon ? SASONG.ikon + " " : ""}${sasongNamn()}`;
+}
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 /* ---------------- Flikar ---------------- */
 function selectTab(name, focus) {
-  if (!TABS.includes(name)) name = "stad";
+  if (!TABS.includes(name)) name = TABS[0];
   currentTab = name;
   document.querySelectorAll(".tab").forEach(tab => {
     const on = tab.dataset.tab === name;
@@ -34,7 +56,8 @@ function selectTab(name, focus) {
 }
 
 function initTabs() {
-  const tabs = [...document.querySelectorAll(".tab")];
+  renderSeasonTab();
+  const tabs = [...document.querySelectorAll(".tab")].filter(tab => !tab.hidden && tab.isConnected);
   tabs.forEach((tab, i) => {
     tab.addEventListener("click", () => selectTab(tab.dataset.tab));
     tab.addEventListener("keydown", e => {
@@ -47,7 +70,7 @@ function initTabs() {
     });
   });
   const fromHash = location.hash.replace("#", "");
-  selectTab(TABS.includes(fromHash) ? fromHash : "stad");
+  selectTab(TABS.includes(fromHash) ? fromHash : TABS[0]);
   window.addEventListener("hashchange", () => {
     const h = location.hash.replace("#", "");
     if (TABS.includes(h) && h !== currentTab) selectTab(h);
@@ -57,7 +80,7 @@ function initTabs() {
 /* ---------------- Galleri ---------------- */
 function renderGallery() {
   const g = document.getElementById("gallery");
-  const list = TAVLOR[currentTab] || [];
+  const list = galleryList(currentTab);
   g.innerHTML = list.map((item, i) => {
     const title = item.titel[LANG] || item.titel.sv;
     return `<button type="button" class="gallery-item reveal" style="--d:${(i % 3) * 0.12}s" data-id="${esc(item.id)}">
@@ -85,8 +108,9 @@ const modal = {
 };
 
 function findItem(id) {
-  for (const cat of Object.keys(TAVLOR)) {
-    const it = TAVLOR[cat].find(x => x.id === id);
+  const cats = [...(SASONG_PA ? ["sasong"] : []), ...Object.keys(TAVLOR)];
+  for (const cat of cats) {
+    const it = galleryList(cat).find(x => x.id === id);
     if (it) return { ...it, kategori: cat };
   }
   return null;
@@ -96,7 +120,7 @@ function renderModal() {
   const it = modal.item;
   if (!it) return;
   const title = it.titel[LANG] || it.titel.sv;
-  document.getElementById("modal-cat").textContent = t("tab." + it.kategori);
+  document.getElementById("modal-cat").textContent = categoryName(it.kategori);
   document.getElementById("modal-title").textContent = title;
   const art = document.getElementById("modal-art");
   art.innerHTML = `<img src="${esc(it.bild)}" alt="${esc(title)}" data-ph="${esc(title)}" data-hue="${CAT_HUE[it.kategori]}">`;
@@ -480,6 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("langchange", () => {
+  if (SASONG_PA) renderSeasonTab();
   if (currentTab !== "egen") renderGallery();
   renderStudioProducts();
   renderSizeChips();

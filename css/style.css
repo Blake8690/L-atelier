@@ -749,6 +749,8 @@ body:not(.has-spotlight) .art img { filter: none; }
 .tab[aria-selected="true"]::after { transform: scaleX(1); }
 .tab.tab-special { color: var(--gold); }
 .tab.tab-special::before { content: "✦ "; }
+.tab.tab-season { color: var(--gold-light); }
+.tab.tab-season[aria-selected="false"] { color: var(--gold); }
 .tab-last-spacer { flex: none; width: 40px; }
 
 .tab-panel[hidden] { display: none; }
