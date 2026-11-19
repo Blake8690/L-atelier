@@ -63,18 +63,21 @@ const TAVLOR = {
     { id: "stad-paris2", bild: "images/paris2.jpeg", titel: { sv: "Eiffeltornet", en: "The Eiffel Tower" } },
     { id: "stad-paris3", bild: "images/paris3.jpeg", titel: { sv: "Paris i solnedgång", en: "Paris at sunset" } },
     { id: "stad-newyork", bild: "images/newyork.jpeg", titel: { sv: "New York", en: "New York" } },
-    { id: "stad-houston", bild: "images/houston.jpeg", titel: { sv: "New York om natten", en: "New York by night" } }
+    { id: "stad-houston", bild: "images/houston.jpeg", titel: { sv: "New York om natten", en: "New York by night" } },
+    { id: "stad-monte-carlo", bild: "images/monte-carlo.jpg", titel: { sv: "Monte Carlo", en: "Monte Carlo" } }
   ],
   natur: [
     { id: "natur-norrsken", bild: "images/norrsken.jpeg", titel: { sv: "Norrsken", en: "Northern lights" } },
     { id: "natur-vattenfall", bild: "images/vattenfall.jpeg", titel: { sv: "Vattenfallet", en: "The waterfall" } },
     { id: "natur-svensk-skog", bild: "images/svensk-skog.jpeg", titel: { sv: "Svensk skog", en: "Swedish forest" } },
     { id: "natur-regnskog", bild: "images/regnskog.jpeg", titel: { sv: "Regnskog", en: "Rainforest" } },
-    { id: "natur-savann", bild: "images/savann.jpeg", titel: { sv: "Savann i solnedgång", en: "Savanna at sunset" } }
+    { id: "natur-savann", bild: "images/savann.jpeg", titel: { sv: "Savann i solnedgång", en: "Savanna at sunset" } },
+    { id: "natur-mont-blanc", bild: "images/mont-blanc.jpg", titel: { sv: "Mont Blanc", en: "Mont Blanc" } }
   ],
   religion: [
     { id: "religion-kors", bild: "images/kors.jpeg", titel: { sv: "Tre kors i solnedgång", en: "Three crosses at sunset" } },
-    { id: "religion-mecca", bild: "images/mecca.jpeg", titel: { sv: "Mecka", en: "Mecca" } }
+    { id: "religion-mecca", bild: "images/mecca.jpeg", titel: { sv: "Mecka", en: "Mecca" } },
+    { id: "religion-alingsas", bild: "images/kyrkan-alingsas.jpg", titel: { sv: "Kyrkan i Alingsås", en: "The church in Alingsås" } }
   ],
   djur: [
     { id: "djur-elefant", bild: "images/elefant.jpeg", titel: { sv: "Elefanten", en: "The elephant" } },
@@ -98,9 +101,11 @@ const SASONG = {
   ikon: "❄",
   namn: { sv: "Jul", en: "Christmas" },
   tavlor: [
-    { id: "sasong-1", bild: "images/sasong/jul-1.jpg", titel: { sv: "Julmotiv 1", en: "Christmas motif 1" } },
-    { id: "sasong-2", bild: "images/sasong/jul-2.jpg", titel: { sv: "Julmotiv 2", en: "Christmas motif 2" } },
-    { id: "sasong-3", bild: "images/sasong/jul-3.jpg", titel: { sv: "Julmotiv 3", en: "Christmas motif 3" } }
+    { id: "jul-1", bild: "images/sasong/jul-1.avif", titel: { sv: "Julby i snöfall", en: "Christmas village in the snow" } },
+    { id: "jul-2", bild: "images/sasong/jul-2.avif", titel: { sv: "Julgata i snöfall", en: "Christmas street in the snow" } },
+    { id: "jul-3", bild: "images/sasong/jul-3.avif", titel: { sv: "Kapellet en julnatt", en: "The chapel on Christmas night" } },
+    { id: "jul-4", bild: "images/sasong/jul-4.avif", titel: { sv: "Vinterskog", en: "Winter forest" } },
+    { id: "jul-5", bild: "images/sasong/jul-5.avif", titel: { sv: "Stugan vid sjön", en: "The cabin by the lake" } }
   ]
 };
 
